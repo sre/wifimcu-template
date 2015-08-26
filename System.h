@@ -5,6 +5,14 @@
 
 #include "stm32f4xx.h"
 
+#if defined(STM32F407xx)
+#define NumberOfInterruptTableEntries 98
+#elif defined(STM32F429xx)
+#define NumberOfInterruptTableEntries 107
+#else
+#error This MCU is not supported.
+#endif
+
 typedef void InterruptHandler();
 
 void InitializeSystem();

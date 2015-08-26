@@ -1,18 +1,42 @@
 #include "System.h"
 
 // PLL_VCO = (HSE_VALUE or HSI_VALUE / PLL_M) * PLL_N
-#define PLL_M 8
+// SYSCLK = PLL_VCO / PLL_P
+// USB OTG FS, SDIO and RNG Clock =  PLL_VCO / PLLQ
+
+#if defined(STM32F407xx)
+
 #ifndef EnableOverclocking
+
+// 8/4*336/4 = 168 MHz
+#define PLL_M 4
 #define PLL_N 336
+#define PLL_P 4
+#define PLL_Q 7
+
 #else
+
+// 8/4*352/4 = 176 MHz for more accurate VGA timings
+#define PLL_M 4
 #define PLL_N 352
+#define PLL_P 4
+#define PLL_Q 7
+
 #endif
 
-// SYSCLK = PLL_VCO / PLL_P
-#define PLL_P 2
+#elif defined(STM32F429xx)
 
-// USB OTG FS, SDIO and RNG Clock =  PLL_VCO / PLLQ
+// 8/4*360/4 = 180 MHz
+#define PLL_M 4
+#define PLL_N 360
+#define PLL_P 4
 #define PLL_Q 7
+
+#else
+
+#error This MCU is not supported.
+
+#endif
 
 // PLLI2S_VCO = (HSE_VALUE Or HSI_VALUE / PLL_M) * PLLI2S_N
 // I2SCLK = PLLI2S_VCO / PLLI2S_R
@@ -23,6 +47,10 @@ static void InitializeClocks();
 
 void InitializeSystem()
 {
+	#if __FPU_PRESENT==1
+	SCB->CPACR|=((3<<10*2)|(3<<11*2));  // Set CP10 and CP11 Full Access 
+	#endif
+
 	// Reset the RCC clock configuration to the default reset state
 	RCC->CR|=0x00000001; // Set HSION bit
 	RCC->CFGR=0x00000000;	// Reset CFGR register
@@ -106,7 +134,7 @@ static InterruptHandler **WritableInterruptTable()
 	{
 		InterruptHandler **flashtable=(InterruptHandler **)FLASH_BASE;
 		currenttable=__isr_vector_sram;
-		for(int i=0;i<98;i++) currenttable[i]=flashtable[i];
+		for(int i=0;i<NumberOfInterruptTableEntries;i++) currenttable[i]=flashtable[i];
 
 		SCB->VTOR=(uint32_t)currenttable;
 	}

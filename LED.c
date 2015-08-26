@@ -4,11 +4,11 @@
 
 void InitializeLEDs()
 {
-	EnableAHB1PeripheralClock(RCC_AHB1ENR_GPIODEN);
+	EnableLEDPeripheralClock();
 
-	SetGPIOOutputMode(GPIOD,(1<<12)|(1<<13)|(1<<14)|(1<<15));
-	SetGPIOPushPullOutput(GPIOD,(1<<12)|(1<<13)|(1<<14)|(1<<15));
-	SetGPIOSpeed50MHz(GPIOD,(1<<12)|(1<<13)|(1<<14)|(1<<15));
-	SetGPIOPullUpResistor(GPIOD,(1<<12)|(1<<13)|(1<<14)|(1<<15));
+	SetGPIOOutputMode(LEDGPIO,LEDMask<<FirstLEDPin);
+	SetGPIOPushPullOutput(LEDGPIO,LEDMask<<FirstLEDPin);
+	SetGPIOSpeed50MHz(LEDGPIO,LEDMask<<FirstLEDPin);
+	SetGPIOPullUpResistor(LEDGPIO,LEDMask<<FirstLEDPin);
 }
 

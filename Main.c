@@ -19,7 +19,7 @@ int main()
 	for(;;)
 	{
 		if(UserButtonState()) SetLEDs(0x0f);
-		else SetLEDs(1<<((t>>4)&3));
+		else SetLEDs(1<<((t>>4)%NumberOfLEDs));
 
 		t++;
 		Delay(1);
