@@ -17,14 +17,15 @@ static inline void ToggleLEDs(int leds)
 {
 	GPIOD->ODR^=leds<<12;
 }
+
 static inline void TurnOnLEDs(int leds)
 {
-	GPIOD->BSRRL=leds<<12;
+	GPIOD->BSRR=leds<<12;
 }
 
 static inline void TurnOffLEDs(int leds)
 {
-	GPIOD->BSRRH=leds<<12;
+	GPIOD->BSRR=leds<<(12+16);
 }
 
 #endif

@@ -4,13 +4,15 @@ CC = arm-none-eabi-gcc
 LD = arm-none-eabi-gcc
 OBJCOPY = arm-none-eabi-objcopy
 
-DEFINES =
-#DEFINES = -DEnableOverclocking
+DEFINES = -DSTM32F407xx
+DEFINES = -DSTM32F429xx
+DEFINES = -DSTM32F446xx
+#DEFINES = -DSTM32F407xx -DEnableOverclocking
 
 C_OPTS =	-std=c99 \
 			-mthumb \
 			-mcpu=cortex-m4 \
-			-ILibraries/CMSIS/Include \
+			-IIncludes \
 			-g \
 			-Werror \
 			-O3

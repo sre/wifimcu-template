@@ -3,6 +3,9 @@
 
 #include "stm32f4xx.h"
 
+#define HSEFrequency 8000000
+#define HSIFrequency 16000000
+
 #include <stdint.h>
 
 static inline void EnableAHB1PeripheralClock(uint32_t peripherals) { RCC->AHB1ENR|=peripherals; }
@@ -48,17 +51,17 @@ static inline uint32_t SYSCLKFrequency()
 	switch(RCC->CFGR&RCC_CFGR_SWS)
 	{
 		case 0x00:  // HSI used as system clock source
-			return HSI_VALUE;
+			return HSIFrequency;
 
 		default:
 		case 0x04:  // HSE used as system clock source
-			return HSE_VALUE;
+			return HSEFrequency;
 
 		case 0x08: // PLL used as system clock source
 		{
       		uint32_t srcclock;
-			if(RCC->PLLCFGR&RCC_PLLCFGR_PLLSRC) srcclock=HSE_VALUE; // HSE used as PLL clock source
-			else srcclock=HSI_VALUE; // HSI used as PLL clock source
+			if(RCC->PLLCFGR&RCC_PLLCFGR_PLLSRC) srcclock=HSEFrequency; // HSE used as PLL clock source
+			else srcclock=HSIFrequency; // HSI used as PLL clock source
 
 			uint32_t pllm=RCC->PLLCFGR&RCC_PLLCFGR_PLLM;
 			uint32_t pllvco=(srcclock/pllm)*((RCC->PLLCFGR&RCC_PLLCFGR_PLLN)>>6);
