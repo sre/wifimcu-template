@@ -47,7 +47,7 @@ static void InitializeClocks();
 
 void InitializeSystem()
 {
-	#if __FPU_PRESENT==1
+	#if (__FPU_PRESENT==1) && (__FPU_USED==1)
 	SCB->CPACR|=((3<<10*2)|(3<<11*2));  // Set CP10 and CP11 Full Access 
 	#endif
 
