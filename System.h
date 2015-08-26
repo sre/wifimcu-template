@@ -9,6 +9,8 @@
 #define NumberOfInterruptTableEntries 98
 #elif defined(STM32F429xx)
 #define NumberOfInterruptTableEntries 107
+#elif defined(STM32F446xx)
+#define NumberOfInterruptTableEntries 113
 #else
 #error This MCU is not supported.
 #endif

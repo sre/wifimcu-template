@@ -32,6 +32,14 @@
 #define PLL_P 4
 #define PLL_Q 7
 
+#elif defined(STM32F446xx)
+
+// 8/4*360/4 = 180 MHz
+#define PLL_M 4
+#define PLL_N 360
+#define PLL_P 4
+#define PLL_Q 7
+
 #else
 
 #error This MCU is not supported.

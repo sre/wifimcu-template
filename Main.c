@@ -18,8 +18,13 @@ int main()
 	uint32_t t=0;
 	for(;;)
 	{
+		#if NumberOfLEDs>1
 		if(UserButtonState()) SetLEDs(0x0f);
 		else SetLEDs(1<<((t>>4)%NumberOfLEDs));
+		#else
+		if(UserButtonState()) SetLEDs(0x01);
+		else SetLEDs((t>>4)&1);
+		#endif
 
 		t++;
 		Delay(1);

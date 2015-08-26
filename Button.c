@@ -6,13 +6,31 @@
 //#include <stm32f4xx_syscfg.h>
 //#include <misc.h>
 
+#if defined(STM32F407xx) || defined(STM32F429xx) // Assume this means STM32F4DISCOVERY or 32F429DISCOVERY
+
 void InitializeUserButton()
 {
 	EnableAHB1PeripheralClock(RCC_AHB1ENR_GPIOAEN);
 
-	SetGPIOInputMode(GPIOA,(1<<0));
-	SetGPIONoPullResistor(GPIOA,(1<<0));
+	SetGPIOInputMode(GPIOA,1<<0);
+	SetGPIONoPullResistor(GPIOA,1<<0);
 }
+
+#elif defined(STM32F446xx) // Assume this means NUCLEO-F446RE
+
+void InitializeUserButton()
+{
+	EnableAHB1PeripheralClock(RCC_AHB1ENR_GPIOCEN);
+
+	SetGPIOInputMode(GPIOC,1<<13);
+	SetGPIONoPullResistor(GPIOC,1<<13);
+}
+
+#else
+
+#error This board is not supported.
+
+#endif
 
 void EnableUserButtonInterrupt()
 {
