@@ -51,9 +51,9 @@
 #define PLLI2S_N 192
 #define PLLI2S_R 5
 
-static void InitializeClocks();
+static void InitialiseClocks();
 
-void InitializeSystem()
+void InitialiseSystem()
 {
 	#if (__FPU_PRESENT==1) && (__FPU_USED==1)
 	SCB->CPACR|=((3<<10*2)|(3<<11*2));  // Set CP10 and CP11 Full Access 

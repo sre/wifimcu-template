@@ -2,7 +2,7 @@
 #include "GPIO.h"
 #include "RCC.h"
 
-void InitializeLEDs()
+void InitialiseLEDs()
 {
 	EnableLEDPeripheralClock();
 

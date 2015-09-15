@@ -32,7 +32,7 @@
 
 #define LEDMask ((1<<NumberOfLEDs)-1)
 
-void InitializeLEDs();
+void InitialiseLEDs();
 
 static inline void SetLEDs(int leds)
 {

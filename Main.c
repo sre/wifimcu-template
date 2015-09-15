@@ -9,11 +9,11 @@ void Delay(uint32_t time);
 
 int main()
 {
-	InitializeSystem();
+	InitialiseSystem();
 	SysTick_Config(HCLKFrequency()/100);
 
-	InitializeLEDs();
-	InitializeUserButton();
+	InitialiseLEDs();
+	InitialiseUserButton();
 
 	uint32_t t=0;
 	for(;;)

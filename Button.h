@@ -5,7 +5,7 @@
 
 #include <stdbool.h>
 
-void InitializeUserButton();
+void InitialiseUserButton();
 void EnableUserButtonInterrupt();
 
 #if defined(STM32F407xx) || defined(STM32F429xx) // Assume this means STM32F4DISCOVERY or 32F429IDISCOVERY

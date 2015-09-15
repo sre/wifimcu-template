@@ -8,7 +8,7 @@
 
 #if defined(STM32F407xx) || defined(STM32F429xx) // Assume this means STM32F4DISCOVERY or 32F429DISCOVERY
 
-void InitializeUserButton()
+void InitialiseUserButton()
 {
 	EnableAHB1PeripheralClock(RCC_AHB1ENR_GPIOAEN);
 
