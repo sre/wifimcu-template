@@ -69,7 +69,7 @@ void InitialiseSystem()
 
 	// Configure the System clock source, PLL Multiplier and Divider factors, 
 	// AHB/APBx prescalers and Flash settings
-	InitializeClocks();
+	InitialiseClocks();
 
 	// Set vector table offset to flash memory start.
 	SCB->VTOR=FLASH_BASE;
@@ -78,7 +78,7 @@ void InitialiseSystem()
 	SCB->AIRCR=0x05FA0000|0x300;
 }
 
-static void InitializeClocks()
+static void InitialiseClocks()
 {
 	// PLL (clocked by HSE) used as System clock source.
 

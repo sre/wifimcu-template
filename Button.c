@@ -18,7 +18,7 @@ void InitialiseUserButton()
 
 #elif defined(STM32F446xx) // Assume this means NUCLEO-F446RE
 
-void InitializeUserButton()
+void InitialiseUserButton()
 {
 	EnableAHB1PeripheralClock(RCC_AHB1ENR_GPIOCEN);
 
