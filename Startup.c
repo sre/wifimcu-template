@@ -25,7 +25,7 @@ void Reset_Handler()
 	for(uint32_t *dest=_bss;dest<_ebss;dest++) *dest=0;
 
 	// Call the application's entry point.
-    main();
+	main();
 
 	// If main ever exits, lock up.
 	for(;;);
