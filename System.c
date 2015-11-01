@@ -60,11 +60,11 @@ void InitialiseSystem()
 	#endif
 
 	// Reset the RCC clock configuration to the default reset state
-	RCC->CR|=0x00000001; // Set HSION bit
+	RCC->CR|=RCC_CR_HSION; // Set HSION bit
 	RCC->CFGR=0x00000000;	// Reset CFGR register
-	RCC->CR&=0xFEF6FFFF; // Reset HSEON, CSSON and PLLON bits
-	RCC->PLLCFGR=0x24003010; // Reset PLLCFGR register
-	RCC->CR&=0xFFFBFFFF; // Reset HSEBYP bit
+	RCC->CR&=~(RCC_CR_HSEON|RCC_CR_CSSON|RCC_CR_PLLON); // Reset HSEON, CSSON and PLLON bits
+	RCC->PLLCFGR=0x20000000|(RCC_PLLCFGR_PLLQ_0*0x4)|(RCC_PLLCFGR_PLLN_0*0xc0)|(RCC_PLLCFGR_PLLM_0*0x10); // Reset PLLCFGR register
+	RCC->CR&=~(RCC_CR_HSEBYP); // Reset HSEBYP bit
 	RCC->CIR=0x00000000; // Disable all interrupts
 
 	// Configure the System clock source, PLL Multiplier and Divider factors, 
