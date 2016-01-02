@@ -11,8 +11,11 @@ OBJCOPY = arm-none-eabi-objcopy
 #DEFINES = -DSTM32F429xx
 #LINKERSCRIPT = Linker-STM32F429xI.ld
 
-DEFINES = -DSTM32F446xx
-LINKERSCRIPT = Linker-STM32F446xE.ld
+#DEFINES = -DSTM32F446xx
+#LINKERSCRIPT = Linker-STM32F446xE.ld
+
+DEFINES = -DSTM32F411xE -DHSEFrequency=26000000
+LINKERSCRIPT = Linker-STM32F411xE.ld
 
 C_OPTS =	-std=c99 \
 			-mthumb \
@@ -20,7 +23,7 @@ C_OPTS =	-std=c99 \
 			-IIncludes \
 			-g \
 			-Werror \
-			-O3
+			-O0
 
 LIBS =	-lm
 

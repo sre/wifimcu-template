@@ -23,7 +23,7 @@ int main()
 		else SetLEDs(1<<((t>>4)%NumberOfLEDs));
 		#else
 		if(UserButtonState()) SetLEDs(0x01);
-		else SetLEDs((t>>4)&1);
+		else SetLEDs((t>>4)|((t>>5)&(t>>6))&1);
 		#endif
 
 		t++;

@@ -7,6 +7,8 @@
 
 #if defined(STM32F407xx)
 #define NumberOfInterruptTableEntries 98
+#elif defined(STM32F411xE)
+#define NumberOfInterruptTableEntries 102
 #elif defined(STM32F429xx)
 #define NumberOfInterruptTableEntries 107
 #elif defined(STM32F446xx)

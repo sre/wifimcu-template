@@ -3,7 +3,9 @@
 
 #include "stm32f4xx.h"
 
+#ifndef HSEFrequency
 #define HSEFrequency 8000000
+#endif
 #define HSIFrequency 16000000
 
 #include <stdint.h>

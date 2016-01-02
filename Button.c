@@ -26,6 +26,16 @@ void InitialiseUserButton()
 	SetGPIONoPullResistor(GPIOC,1<<13);
 }
 
+#elif defined(STM32F411xE) // Assume this means WiFiMCU
+
+void InitialiseUserButton()
+{
+	EnableAHB1PeripheralClock(RCC_AHB1ENR_GPIOBEN);
+
+	SetGPIOInputMode(GPIOB,1<<2);
+	SetGPIONoPullResistor(GPIOB,1<<2);
+}
+
 #else
 
 #error This board is not supported.

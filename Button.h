@@ -22,6 +22,13 @@ static inline bool UserButtonState()
 	return !((GPIOC->IDR>>13)&0x01);
 }
 
+#elif defined(STM32F411xE) // Assume this means WiFiMCU
+
+static inline bool UserButtonState()
+{
+	return !((GPIOB->IDR>>2)&0x01);
+}
+
 #else
 
 #error This board is not supported.

@@ -10,6 +10,14 @@
 #define FirstLEDPin 12
 #define EnableLEDPeripheralClock() EnableAHB1PeripheralClock(RCC_AHB1ENR_GPIODEN)
 
+#elif defined(STM32F411xE) // Assume this means WiFiMCU
+
+#define LEDGPIO GPIOA
+#define NumberOfLEDs 1
+#define FirstLEDPin 4
+#define EnableLEDPeripheralClock() EnableAHB1PeripheralClock(RCC_AHB1ENR_GPIOAEN)
+#define LEDsAreInverted
+
 #elif defined(STM32F429xx) // Assume this means 32F429IDISCOVERY
 
 #define LEDGPIO GPIOG
@@ -38,6 +46,9 @@ static inline void SetLEDs(int leds)
 {
 	uint16_t val=LEDGPIO->ODR;
 	val&=~(LEDMask<<FirstLEDPin);
+	#ifdef LEDsAreInverted
+	leds^=LEDMask;
+	#endif
 	val|=leds<<FirstLEDPin;
 	LEDGPIO->ODR=val;
 }

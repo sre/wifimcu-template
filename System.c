@@ -1,44 +1,69 @@
 #include "System.h"
+#include "RCC.h"
 
-// PLL_VCO = (HSE_VALUE or HSI_VALUE / PLL_M) * PLL_N
-// SYSCLK = PLL_VCO / PLL_P
-// USB OTG FS, SDIO and RNG Clock =  PLL_VCO / PLLQ
+// F_VCO = (HSE_VALUE or HSI_VALUE / PLL_M) * PLL_N
+// 2 <= PLL_M <= 63
+// 192 <= PLL_N <= 432
+// 1 MHz <= (HSE_VALUE or HSI_VALUE / PLL_M) <= 2 MHz
+// ??? 192 MHz <= (HSE_VALUE or HSI_VALUE / PLL_M) * PLL_N <= 432 MHz
+
+// F_SYSCLK = F_VCO / PLL_P
+// PLL_P = 2,4,6,8
+
+// USB OTG FS, SDIO and RNG Clock = F_VCO / PLL_Q
+// 2 <= PLL_Q <= 15
+// USB OTG FS: PLL_VCO / PLLQ == 48 MHz
+// SDIO and RNG Clock: PLL_VCO / PLLQ <= 48 MHz
+
 
 #if defined(STM32F407xx)
 
 #ifndef EnableOverclocking
 
 // 8/4*336/4 = 168 MHz
-#define PLL_M 4
+// 8/4*336/14 = 48 MHz
+#define PLL_M (HSEFrequency/2000000) // 8 MHz -> 4
 #define PLL_N 336
 #define PLL_P 4
-#define PLL_Q 7
+#define PLL_Q 14
 
 #else
 
 // 8/4*352/4 = 176 MHz for more accurate VGA timings
-#define PLL_M 4
+// 8/4*352/15 = 46.9333 MHz
+#define PLL_M (HSEFrequency/2000000) // 8 MHz -> 4
 #define PLL_N 352
 #define PLL_P 4
-#define PLL_Q 7
+#define PLL_Q 15
 
 #endif
+
+#elif defined(STM32F411xE)
+
+// 8/4*300/6 = 100 MHz
+// 8/4*300/7 = 46.1538 MHz
+#define PLL_M (HSEFrequency/2000000) // 8 MHz -> 4, 26 MHz -> 13 (WiFiMCU)
+#define PLL_N 300
+#define PLL_P 6
+#define PLL_Q 13
 
 #elif defined(STM32F429xx)
 
 // 8/4*360/4 = 180 MHz
-#define PLL_M 4
+// 8/4*360/15 = 48 MHz
+#define PLL_M (HSEFrequency/2000000) // 8 MHz -> 4
 #define PLL_N 360
 #define PLL_P 4
-#define PLL_Q 7
+#define PLL_Q 15
 
 #elif defined(STM32F446xx)
 
 // 8/4*360/4 = 180 MHz
-#define PLL_M 4
+// 8/4*360/15 = 48 MHz
+#define PLL_M (HSEFrequency/2000000) // 8 MHz -> 4
 #define PLL_N 360
 #define PLL_P 4
-#define PLL_Q 7
+#define PLL_Q 15
 
 #else
 
@@ -82,7 +107,7 @@ static void InitialiseClocks()
 {
 	// PLL (clocked by HSE) used as System clock source.
 
-	// Enable HSE and wait until it is read.
+	// Enable HSE and wait until it is ready.
 	RCC->CR|=RCC_CR_HSEON;
 	while(!(RCC->CR&RCC_CR_HSERDY));
 
