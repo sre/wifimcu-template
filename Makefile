@@ -23,7 +23,7 @@ C_OPTS =	-std=c99 \
 			-IIncludes \
 			-g \
 			-Werror \
-			-O0
+			-O3
 
 LIBS =	-lm
 
