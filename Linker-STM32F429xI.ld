@@ -36,4 +36,8 @@ SECTIONS
         *(COMMON)
         _ebss = .;
     } > ccmram
+	/DISCARD/ :
+    {
+        *(.ARM.exidx)
+    }
 }

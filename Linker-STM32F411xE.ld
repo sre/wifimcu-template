@@ -35,4 +35,8 @@ SECTIONS
         *(COMMON)
         _ebss = .;
     } > sram
+	/DISCARD/ :
+    {
+        *(.ARM.exidx)
+    }
 }
