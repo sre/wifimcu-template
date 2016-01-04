@@ -18,6 +18,8 @@ SECTIONS
 		KEEP(*(.isr_vector))
 		__isr_vector_end = .;
 		*(.text*)
+		*(.init)
+		*(.fini)
 		*(.rodata*)
 		_etext = .;
 		_idata = .;
