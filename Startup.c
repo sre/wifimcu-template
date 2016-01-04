@@ -41,7 +41,7 @@ void HardFault_Handler() __attribute__((weak,alias("Default_Handler")));
 void MemManage_Handler() __attribute__((weak,alias("Default_Handler")));
 void BusFault_Handler() __attribute__((weak,alias("Default_Handler")));
 void UsageFault_Handler() __attribute__((weak,alias("Default_Handler")));
-void SVCall_Handler() __attribute__((weak,alias("Default_Handler")));
+void SVC_Handler() __attribute__((weak,alias("Default_Handler")));
 void DebugMon_Handler() __attribute__((weak,alias("Default_Handler")));
 void PendSV_Handler() __attribute__((weak,alias("Default_Handler")));
 void SysTick_Handler() __attribute__((weak,alias("Default_Handler")));
@@ -158,7 +158,7 @@ __attribute__ ((section(".isr_vector"))) const void *InterruptVectors[NumberOfIn
 	0,
 	0,
 	0,
-	SVCall_Handler,
+	SVC_Handler,
 	DebugMon_Handler,
 	0,
 	PendSV_Handler,
@@ -262,7 +262,7 @@ __attribute__ ((section(".isr_vector"))) const void *InterruptVectors[NumberOfIn
 	0,
 	0,
 	0,
-	SVCall_Handler,
+	SVC_Handler,
 	DebugMon_Handler,
 	0,
 	PendSV_Handler,
@@ -370,7 +370,7 @@ __attribute__ ((section(".isr_vector"))) const void *InterruptVectors[NumberOfIn
 	0,
 	0,
 	0,
-	SVCall_Handler,
+	SVC_Handler,
 	DebugMon_Handler,
 	0,
 	PendSV_Handler,
@@ -483,7 +483,7 @@ __attribute__ ((section(".isr_vector"))) const void *InterruptVectors[NumberOfIn
 	0,
 	0,
 	0,
-	SVCall_Handler,
+	SVC_Handler,
 	DebugMon_Handler,
 	0,
 	PendSV_Handler,
