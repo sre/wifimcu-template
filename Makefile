@@ -1,4 +1,4 @@
-NAME = Blinker
+NAME = FreeRTOS
 
 CC = arm-none-eabi-gcc
 LD = arm-none-eabi-gcc
@@ -20,7 +20,12 @@ LINKERSCRIPT = Linker-STM32F411xE.ld
 C_OPTS =	-std=c99 \
 			-mthumb \
 			-mcpu=cortex-m4 \
+			-mfloat-abi=hard \
+			-mfpu=fpv4-sp-d16 \
 			-IIncludes \
+			-I. \
+			-IFreeRTOS/include \
+			-IFreeRTOS/portable/GCC/ARM_CM4F \
 			-g \
 			-Werror \
 			-O3
@@ -34,14 +39,28 @@ C_FILES =	Button.c \
 			LED.c \
 			Main.c \
 			Startup.c \
-			System.c
+			System.c \
+			FreeRTOS/croutine.c \
+			FreeRTOS/event_groups.c \
+			FreeRTOS/list.c \
+			FreeRTOS/queue.c \
+			FreeRTOS/tasks.c \
+			FreeRTOS/timers.c \
+			FreeRTOS/portable/GCC/ARM_CM4F/port.c \
+			FreeRTOS/portable/MemMang/heap_3.c
 
 S_FILES = 
 
 OBJS = $(C_FILES:%.c=$(BUILD_DIR)/%.o) $(S_FILES:%.S=$(BUILD_DIR)/%.o)
 
 ALL_CFLAGS = $(C_OPTS) $(DEFINES) $(CFLAGS)
-ALL_LDFLAGS = $(LD_FLAGS) -mthumb -mcpu=cortex-m4 -nostartfiles -Wl,-T,$(LINKERSCRIPT),--gc-sections
+ALL_LDFLAGS =	$(LD_FLAGS) \
+				-mthumb \
+				-mcpu=cortex-m4 \
+				-mfloat-abi=hard \
+				-mfpu=fpv4-sp-d16 \
+				--specs=nosys.specs \
+				-Wl,-T,$(LINKERSCRIPT),--gc-sections
 
 AUTODEPENDENCY_CFLAGS=-MMD -MF$(@:.o=.d) -MT$@
 

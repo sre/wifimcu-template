@@ -4,42 +4,36 @@
 #include "RCC.h"
 
 #include <string.h>
+#include <FreeRTOS.h>
+#include <task.h>
 
-void Delay(uint32_t time);
+static void LEDTask(void *parameters);
 
 int main()
 {
 	InitialiseSystem();
-	SysTick_Config(HCLKFrequency()/100);
 
 	InitialiseLEDs();
 	InitialiseUserButton();
 
+	xTaskCreate(LEDTask,"LEDTask",1024,NULL,2,NULL);
+
+	vTaskStartScheduler();
+}
+
+static void LEDTask(void *parameters)
+{
 	uint32_t t=0;
 	for(;;)
 	{
 		#if NumberOfLEDs>1
 		if(UserButtonState()) SetLEDs(0x0f);
-		else SetLEDs(1<<((t>>4)%NumberOfLEDs));
+		else SetLEDs(1<<(t%NumberOfLEDs));
 		#else
 		if(UserButtonState()) SetLEDs(0x01);
-		else SetLEDs((t>>4)|((t>>5)&(t>>6))&1);
+		else SetLEDs(t|((t>>1)&(t>>2))&1);
 		#endif
 
-		t++;
-		Delay(1);
+		vTaskDelay(160);
 	}	
-}
-
-volatile uint32_t SysTickCounter=0;
-
-void Delay(uint32_t time)
-{
-	uint32_t end=SysTickCounter+time;
-	while(SysTickCounter!=end);
-}
-
-void SysTick_Handler()
-{  
-	SysTickCounter++;
 }
