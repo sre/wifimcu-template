@@ -35,5 +35,6 @@ static void LEDTask(void *parameters)
 		#endif
 
 		vTaskDelay(160);
+		t++;
 	}	
 }
