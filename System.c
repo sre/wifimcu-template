@@ -1,5 +1,6 @@
 #include "System.h"
 #include "RCC.h"
+#include <errno.h>
 
 // F_VCO = (HSE_VALUE or HSI_VALUE / PLL_M) * PLL_N
 // 2 <= PLL_M <= 63
@@ -173,4 +174,27 @@ static InterruptHandler **WritableInterruptTable()
 	}
 
 	return currenttable;
+}
+
+
+
+
+// Heap for newlib
+
+void *_sbrk(int incr)
+{
+	extern uint8_t _heap[];
+	extern uint8_t _eheap[];
+	static uint8_t *heapend=_heap;
+
+	if(heapend+incr>_eheap)
+	{
+		errno=ENOMEM;
+		return (void *)-1;
+	}
+
+	uint8_t *newheapstart=heapend; 
+	heapend+=incr;
+
+	return newheapstart;
 }
