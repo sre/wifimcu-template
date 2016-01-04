@@ -20,6 +20,8 @@ LINKERSCRIPT = Linker-STM32F411xE.ld
 C_OPTS =	-std=c99 \
 			-mthumb \
 			-mcpu=cortex-m4 \
+			-mfloat-abi=hard \
+			-mfpu=fpv4-sp-d16 \
 			-IIncludes \
 			-g \
 			-Werror \
@@ -41,7 +43,13 @@ S_FILES =
 OBJS = $(C_FILES:%.c=$(BUILD_DIR)/%.o) $(S_FILES:%.S=$(BUILD_DIR)/%.o)
 
 ALL_CFLAGS = $(C_OPTS) $(DEFINES) $(CFLAGS)
-ALL_LDFLAGS = $(LD_FLAGS) -mthumb -mcpu=cortex-m4 -nostartfiles -Wl,-T,$(LINKERSCRIPT),--gc-sections
+ALL_LDFLAGS =	$(LD_FLAGS) \
+				-mthumb \
+				-mcpu=cortex-m4 \
+				-mfloat-abi=hard \
+				-mfpu=fpv4-sp-d16 \
+				--specs=nosys.specs \
+				-Wl,-T,$(LINKERSCRIPT),--gc-sections
 
 AUTODEPENDENCY_CFLAGS=-MMD -MF$(@:.o=.d) -MT$@
 
