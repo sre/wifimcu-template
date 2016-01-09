@@ -55,18 +55,17 @@ static inline void SetLEDs(int leds)
 
 static inline void ToggleLEDs(int leds)
 {
-	LEDGPIO->ODR^=(leds&LEDMask)<<FirstLEDPin;
+	ToggleGPIOPins(LEDGPIO,(leds&LEDMask)<<FirstLEDPin);
 }
 
 static inline void TurnOnLEDs(int leds)
 {
-	LEDGPIO->BSRR=(leds&LEDMask)<<FirstLEDPin;
+	SetGPIOPinsHigh(LEDGPIO,(leds&LEDMask)<<FirstLEDPin);
 }
 
 static inline void TurnOffLEDs(int leds)
 {
-	LEDGPIO->BSRR=(leds&LEDMask)<<(FirstLEDPin+16);
+	SetGPIOPinsLow(LEDGPIO,(leds&LEDMask)<<FirstLEDPin);
 }
 
 #endif
-

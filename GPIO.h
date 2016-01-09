@@ -90,4 +90,19 @@ static inline void SelectAlternateFunctionForGPIOPin(volatile GPIO_TypeDef *gpio
 	gpio->AFR[regindex]=(gpio->AFR[regindex]&~(0x0f<<position))|(function<<position);
 }
 
+static inline void SetGPIOPinsHigh(volatile GPIO_TypeDef *gpio,uint16_t pins)
+{
+	gpio->BSRR=pins;
+}
+
+static inline void SetGPIOPinsLow(volatile GPIO_TypeDef *gpio,uint16_t pins)
+{
+	gpio->BSRR=((uint32_t)pins)<<16;
+}
+
+static inline void ToggleGPIOPins(volatile GPIO_TypeDef *gpio,uint16_t pins)
+{
+	gpio->ODR=pins;
+}
+
 #endif
