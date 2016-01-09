@@ -2,6 +2,7 @@
 #define __LED_H__
 
 #include "stm32f4xx.h"
+#include "GPIO.h"
 
 #if defined(STM32F4DISCOVERY)
 
