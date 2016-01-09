@@ -1,6 +1,7 @@
 #include "System.h"
 #include "LED.h"
 #include "Button.h"
+#include "Printf.h"
 #include "RCC.h"
 
 #include <string.h>
@@ -12,8 +13,18 @@ int main()
 	InitialiseSystem();
 	SysTick_Config(HCLKFrequency()/100);
 
+	InitialisePrintf();
+	printf("LED blinker\n");
+	printf("===========\n");
+	printf("\n");
+
+	printf("Initialising %d LED%s.\n",NumberOfLEDs,NumberOfLEDs==1?"":"s");
 	InitialiseLEDs();
+
+	printf("Initialising user buttons.\n");
 	InitialiseUserButton();
+
+	printf("Starting main loop.\n");
 
 	uint32_t t=0;
 	for(;;)

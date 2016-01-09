@@ -38,8 +38,10 @@ SOURCE_DIR = .
 BUILD_DIR = Build
 
 C_FILES =	Button.c \
+			FormatString.c \
 			LED.c \
 			Main.c \
+			Printf.c \
 			Startup.c \
 			System.c
 

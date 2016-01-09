@@ -13,6 +13,8 @@
 		1B8861531BAB7076003B82FC /* Startup.c in Sources */ = {isa = PBXBuildFile; fileRef = 1B8861311BA871D2003B82FC /* Startup.c */; };
 		1B8861541BAB7076003B82FC /* System.c in Sources */ = {isa = PBXBuildFile; fileRef = 1B8861321BA871D2003B82FC /* System.c */; };
 		1BF2D71A1C406ED900FF8D66 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 1BF2D7191C406ED900FF8D66 /* README.md */; };
+		1BF2D71D1C4071A800FF8D66 /* Printf.c in Sources */ = {isa = PBXBuildFile; fileRef = 1BF2D71B1C4071A800FF8D66 /* Printf.c */; };
+		1BF2D7201C40864600FF8D66 /* FormatString.c in Sources */ = {isa = PBXBuildFile; fileRef = 1BF2D71E1C40864600FF8D66 /* FormatString.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -72,6 +74,11 @@
 		1BF2D7171C406EC200FF8D66 /* stm32f4xx.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = stm32f4xx.h; sourceTree = "<group>"; };
 		1BF2D7181C406EC200FF8D66 /* system_stm32f4xx.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = system_stm32f4xx.h; sourceTree = "<group>"; };
 		1BF2D7191C406ED900FF8D66 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		1BF2D71B1C4071A800FF8D66 /* Printf.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Printf.c; sourceTree = "<group>"; };
+		1BF2D71C1C4071A800FF8D66 /* USART.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = USART.h; sourceTree = "<group>"; };
+		1BF2D71E1C40864600FF8D66 /* FormatString.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = FormatString.c; sourceTree = "<group>"; };
+		1BF2D71F1C40864600FF8D66 /* FormatString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormatString.h; sourceTree = "<group>"; };
+		1BF2D7211C4086A900FF8D66 /* Printf.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Printf.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,14 +97,19 @@
 			children = (
 				1B8861091BA871D2003B82FC /* Button.c */,
 				1B88610A1BA871D2003B82FC /* Button.h */,
+				1BF2D71E1C40864600FF8D66 /* FormatString.c */,
+				1BF2D71F1C40864600FF8D66 /* FormatString.h */,
 				1B88610B1BA871D2003B82FC /* GPIO.h */,
 				1B8861291BA871D2003B82FC /* LED.c */,
 				1B88612A1BA871D2003B82FC /* LED.h */,
 				1B88612E1BA871D2003B82FC /* Main.c */,
+				1BF2D71B1C4071A800FF8D66 /* Printf.c */,
+				1BF2D7211C4086A900FF8D66 /* Printf.h */,
 				1B8861301BA871D2003B82FC /* RCC.h */,
 				1B8861311BA871D2003B82FC /* Startup.c */,
 				1B8861321BA871D2003B82FC /* System.c */,
 				1B8861331BA871D2003B82FC /* System.h */,
+				1BF2D71C1C4071A800FF8D66 /* USART.h */,
 				1B88612F1BA871D2003B82FC /* Makefile */,
 				1BF2D6FD1C406EC200FF8D66 /* Includes */,
 				1BF2D6F81C406EB100FF8D66 /* Linker */,
@@ -241,7 +253,9 @@
 				1B8861501BAB7067003B82FC /* LED.c in Sources */,
 				1B88614E1BAB7062003B82FC /* Button.c in Sources */,
 				1B8861531BAB7076003B82FC /* Startup.c in Sources */,
+				1BF2D71D1C4071A800FF8D66 /* Printf.c in Sources */,
 				1B8861541BAB7076003B82FC /* System.c in Sources */,
+				1BF2D7201C40864600FF8D66 /* FormatString.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
