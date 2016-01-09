@@ -1,0 +1,24 @@
+#include <FreeRTOSConfig.h>
+
+#define MEM_LIBC_MALLOC 1
+
+#define MEM_ALIGNMENT 4
+
+#define LWIP_DHCP 1
+
+#define LWIP_DNS 1
+
+#define LWIP_TIMEVAL_PRIVATE 0
+
+#define LWIP_NETIF_HOSTNAME 1
+
+
+#define TCPIP_THREAD_PRIO (configMAX_PRIORITIES-2)
+
+#define TCPIP_THREAD_STACKSIZE configMINIMAL_STACK_SIZE
+
+#define DEFAULT_TCP_RECVMBOX_SIZE 5
+
+#define DEFAULT_ACCEPTMBOX_SIZE 5
+
+#define TCPIP_MBOX_SIZE 10
