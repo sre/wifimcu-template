@@ -1,4 +1,7 @@
+glob:*.pbxuser
+glob:.DS_Store
+glob:*.xcuserdatad
+glob:Build
 glob:*.elf
 glob:*.bin
-glob:Build
-glob:.DS_Store
+

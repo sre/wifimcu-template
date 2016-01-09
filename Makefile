@@ -3,19 +3,24 @@ NAME = FreeRTOS
 CC = arm-none-eabi-gcc
 LD = arm-none-eabi-gcc
 OBJCOPY = arm-none-eabi-objcopy
+GDB = arm-none-eabi-gdb
 
-#DEFINES = -DSTM32F407xx
-#DEFINES = -DSTM32F407xx -DEnableOverclocking
-#LINKERSCRIPT = Linker-STM32F407xG.ld
+#DEFINES = -DSTM32F407xx -DSTM32F4DISCOVERY
+#DEFINES = -DSTM32F407xx -DSTM32F4DISCOVERY -DEnableOverclocking
+#LINKERSCRIPT = Linker/Linker-STM32F407xG.ld
+#INTERFACE = interface/stlink-v2.cfg
 
-#DEFINES = -DSTM32F429xx
-#LINKERSCRIPT = Linker-STM32F429xI.ld
+#DEFINES = -DSTM32F429xx -DSTM32F429IDISCOVERY
+#LINKERSCRIPT = Linker/Linker-STM32F429xI.ld
+#INTERFACE = interface/stlink-v2.cfg
 
-#DEFINES = -DSTM32F446xx
-#LINKERSCRIPT = Linker-STM32F446xE.ld
+#DEFINES = -DSTM32F446xx -DNUCLEO_F446RE
+#LINKERSCRIPT = Linker/Linker-STM32F446xE.ld
+#INTERFACE = interface/stlink-v2-1.cfg
 
-DEFINES = -DSTM32F411xE -DHSEFrequency=26000000
-LINKERSCRIPT = Linker-STM32F411xE.ld
+DEFINES = -DSTM32F411xE -DWIFIMCU -DHSEFrequency=26000000
+LINKERSCRIPT = Linker/Linker-STM32F411xE.ld
+INTERFACE = interface/stlink-v2.cfg
 
 C_OPTS =	-std=c99 \
 			-mthumb \
@@ -36,8 +41,10 @@ SOURCE_DIR = .
 BUILD_DIR = Build
 
 C_FILES =	Button.c \
+			FormatString.c \
 			LED.c \
 			Main.c \
+			Printf.c \
 			Startup.c \
 			System.c \
 			FreeRTOS/croutine.c \
@@ -70,24 +77,22 @@ AUTODEPENDENCY_CFLAGS=-MMD -MF$(@:.o=.d) -MT$@
 all: $(NAME).bin
 
 upload: $(NAME).bin
-	openocd -f interface/stlink-v2.cfg -f target/stm32f4x.cfg \
+	openocd -f $(INTERFACE) -f target/stm32f4x.cfg \
 	-c init -c "reset halt" -c "stm32f2x mass_erase 0" \
 	-c "flash write_bank 0 $(NAME).bin 0" \
 	-c "reset run" -c shutdown
 
-upload2: $(NAME).bin
-	openocd -f interface/stlink-v2-1.cfg -f target/stm32f4x.cfg \
-	-c init -c "reset halt" -c "stm32f2x mass_erase 0" \
-	-c "flash write_bank 0 $(NAME).bin 0" \
-	-c "reset run" -c shutdown
+debug: $(NAME).elf
+	$(GDB) $(NAME).elf \
+	--eval-command="target remote :3333" \
+	--eval-command="load" \
+	--eval-command="monitor reset init"
 
-debug:
-	arm-eabi-gdb $(NAME).elf \
-	--eval-command="target remote | openocd -f interface/stlink-v2.cfg -f target/stm32f4x_stlink.cfg -c 'gdb_port pipe'"
+.PHONY: debugserver
+debugserver:
+	openocd -f $(INTERFACE) -f target/stm32f4x.cfg
 
-stlink:
-	arm-eabi-gdb $(NAME).elf --eval-command="target ext :4242"
-
+.PHONY: clean
 clean:
 	rm -rf $(BUILD_DIR) $(NAME).elf $(NAME).bin
 
