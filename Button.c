@@ -6,7 +6,7 @@
 //#include <stm32f4xx_syscfg.h>
 //#include <misc.h>
 
-#if defined(STM32F407xx) || defined(STM32F429xx) // Assume this means STM32F4DISCOVERY or 32F429DISCOVERY
+#if defined(STM32F4DISCOVERY) || defined(STM32F429IDISCOVERY)
 
 void InitialiseUserButton()
 {
@@ -16,7 +16,7 @@ void InitialiseUserButton()
 	SetGPIONoPullResistor(GPIOA,1<<0);
 }
 
-#elif defined(STM32F446xx) // Assume this means NUCLEO-F446RE
+#elif defined(NUCLEO_F446RE)
 
 void InitialiseUserButton()
 {
@@ -26,7 +26,7 @@ void InitialiseUserButton()
 	SetGPIONoPullResistor(GPIOC,1<<13);
 }
 
-#elif defined(STM32F411xE) // Assume this means WiFiMCU
+#elif defined(WIFIMCU)
 
 void InitialiseUserButton()
 {

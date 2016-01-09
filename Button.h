@@ -8,21 +8,21 @@
 void InitialiseUserButton();
 void EnableUserButtonInterrupt();
 
-#if defined(STM32F407xx) || defined(STM32F429xx) // Assume this means STM32F4DISCOVERY or 32F429IDISCOVERY
+#if defined(STM32F4DISCOVERY) || defined(STM32F429IDISCOVERY)
 
 static inline bool UserButtonState()
 {
 	return (GPIOA->IDR>>0)&0x01;
 }
 
-#elif defined(STM32F446xx) // Assume this means NUCLEO-F446RE
+#elif defined(NUCLEO_F446RE)
 
 static inline bool UserButtonState()
 {
 	return !((GPIOC->IDR>>13)&0x01);
 }
 
-#elif defined(STM32F411xE) // Assume this means WiFiMCU
+#elif defined(WIFIMCU)
 
 static inline bool UserButtonState()
 {

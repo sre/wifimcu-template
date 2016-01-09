@@ -5,20 +5,20 @@ LD = arm-none-eabi-gcc
 OBJCOPY = arm-none-eabi-objcopy
 GDB = arm-none-eabi-gdb
 
-#DEFINES = -DSTM32F407xx
-#DEFINES = -DSTM32F407xx -DEnableOverclocking
+#DEFINES = -DSTM32F407xx -DSTM32F4DISCOVERY
+#DEFINES = -DSTM32F407xx -DSTM32F4DISCOVERY -DEnableOverclocking
 #LINKERSCRIPT = Linker/Linker-STM32F407xG.ld
 #INTERFACE = interface/stlink-v2.cfg
 
-#DEFINES = -DSTM32F429xx
+#DEFINES = -DSTM32F429xx -DSTM32F429IDISCOVERY
 #LINKERSCRIPT = Linker/Linker-STM32F429xI.ld
 #INTERFACE = interface/stlink-v2.cfg
 
-#DEFINES = -DSTM32F446xx
+#DEFINES = -DSTM32F446xx -DNUCLEO_F446RE
 #LINKERSCRIPT = Linker/Linker-STM32F446xE.ld
 #INTERFACE = interface/stlink-v2-1.cfg
 
-DEFINES = -DSTM32F411xE -DHSEFrequency=26000000
+DEFINES = -DSTM32F411xE -DWIFIMCU -DHSEFrequency=26000000
 LINKERSCRIPT = Linker/Linker-STM32F411xE.ld
 INTERFACE = interface/stlink-v2.cfg
 

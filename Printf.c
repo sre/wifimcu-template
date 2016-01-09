@@ -2,9 +2,15 @@
 #include "GPIO.h"
 #include "FormatString.h"
 
+#if defined(WIFIMCU)
+
 #define PrintfUSART USART2
 #define PrintfBaudRate 115200
 #define EnablePrintfUSARTClock() EnableAPB1PeripheralClock(RCC_APB1ENR_USART2EN)
+
+#endif
+
+#ifdef PrintfUSART
 
 void InitialisePrintf()
 {
@@ -29,6 +35,14 @@ static void PrintfOutputFunction(char c,void *context)
 {
 	SendUSARTByte(PrintfUSART,c);
 }
+
+#else
+
+void InitialisePrintf() {}
+
+static void PrintfOutputFunction(char c,void *context) {}
+
+#endif
 
 int printf(const char *format,...)
 {
