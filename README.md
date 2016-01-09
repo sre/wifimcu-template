@@ -1,6 +1,6 @@
-# STM32F4 FreeRTOS Blinker #
+# STM32F4 FreeRTOS+LwIP stack #
 
-This is a simple template project for building code for the STM32F4 using FreeRTOS 8. It is a simple LED blinker, with Makefiles and linker scripts to get it up and running on any of the following cheap developer boards:
+This is a simple template project for building code for the STM32F4 using FreeRTOS 8 and LwIP. It is a dummy project that only starts up the stack with no interface, and then shuts down. It has Makefiles and linker scripts to run (and do nothing) on these cheap developer boards:
 
 * STM32F4DISCOVERY
 * 32F429IDISCOVERY
@@ -15,4 +15,4 @@ This code should build with any basic arm-none-eabi toolchain that has support f
 
 ## License ##
 
-Except for the FreeRTOS parts, which are released under their own license, this code is released into the public domain with no warranties. If that is not suitable, it is also available under the [CC0 license](http://creativecommons.org/publicdomain/zero/1.0/).
+Except for the FreeRTOS and LwIP parts, which are released under their own license, this code is released into the public domain with no warranties. If that is not suitable, it is also available under the [CC0 license](http://creativecommons.org/publicdomain/zero/1.0/).
