@@ -37,6 +37,7 @@ The WiFi chip driver uses the driver code from WICED, with a custom driver to ta
 * The WICED code has a powersave mode for the WiFi chip. It is unclear if this works on the EMW3165, but it certainly doesn't work on with this driver.
 * The only way to change the MAC address is to edit `WICEDIncludes/generated_mac_address.txt` by hand.
 * The WiFi chip firmware data is stored in normal flash memory. This uses up a lot of space. It should be moved to the external flash, but this is not yet implemented.
+* WICED contains lots of strange patches and changes to both FreeRTOS and LwIP. Most of them do not seem necessary, except for one small patch to `netif/etharp.c` in LwIP. I have tried to port this change to LwIP 1.4.1, but it does not apply entirely cleanly, nor do I fully understand it. It seems to work for now, though.
 
 ## License ##
 
