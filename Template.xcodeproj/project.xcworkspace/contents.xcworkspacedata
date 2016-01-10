@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:/Users/dag/Code/STM32F4/LwIP/LwIP.xcodeproj">
+      location = "self:/Users/dag/Code/STM32F4/EMW3165-Template/Template.xcodeproj">
    </FileRef>
 </Workspace>

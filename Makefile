@@ -1,4 +1,4 @@
-NAME = WiFi
+NAME = Template
 
 CC = arm-none-eabi-gcc
 LD = arm-none-eabi-gcc

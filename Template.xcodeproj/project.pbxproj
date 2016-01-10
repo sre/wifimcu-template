@@ -23,7 +23,6 @@
 		1BF2D7441C408E3F00FF8D66 /* queue.c in Sources */ = {isa = PBXBuildFile; fileRef = 1BF2D73C1C408E3F00FF8D66 /* queue.c */; };
 		1BF2D7451C408E3F00FF8D66 /* tasks.c in Sources */ = {isa = PBXBuildFile; fileRef = 1BF2D73D1C408E3F00FF8D66 /* tasks.c */; };
 		1BF2D7461C408E3F00FF8D66 /* timers.c in Sources */ = {isa = PBXBuildFile; fileRef = 1BF2D73E1C408E3F00FF8D66 /* timers.c */; };
-		1BF83FD81C41A2FE0036E6A3 /* sys_arch.c in Sources */ = {isa = PBXBuildFile; fileRef = 1BF83F4A1C41A2FD0036E6A3 /* sys_arch.c */; };
 		1BF83FD91C41A2FE0036E6A3 /* api_lib.c in Sources */ = {isa = PBXBuildFile; fileRef = 1BF83F4D1C41A2FD0036E6A3 /* api_lib.c */; };
 		1BF83FDA1C41A2FE0036E6A3 /* api_msg.c in Sources */ = {isa = PBXBuildFile; fileRef = 1BF83F4E1C41A2FD0036E6A3 /* api_msg.c */; };
 		1BF83FDB1C41A2FE0036E6A3 /* err.c in Sources */ = {isa = PBXBuildFile; fileRef = 1BF83F4F1C41A2FD0036E6A3 /* err.c */; };
@@ -82,6 +81,8 @@
 		1BF840101C41A2FE0036E6A3 /* randm.c in Sources */ = {isa = PBXBuildFile; fileRef = 1BF83FD31C41A2FE0036E6A3 /* randm.c */; };
 		1BF840111C41A2FE0036E6A3 /* vj.c in Sources */ = {isa = PBXBuildFile; fileRef = 1BF83FD51C41A2FE0036E6A3 /* vj.c */; };
 		1BF840121C41A2FE0036E6A3 /* slipif.c in Sources */ = {isa = PBXBuildFile; fileRef = 1BF83FD71C41A2FE0036E6A3 /* slipif.c */; };
+		1BF8401E1C42FA180036E6A3 /* etharp.c in Sources */ = {isa = PBXBuildFile; fileRef = 1BF8401A1C42FA180036E6A3 /* etharp.c */; };
+		1BF8401F1C42FA180036E6A3 /* sys_arch.c in Sources */ = {isa = PBXBuildFile; fileRef = 1BF8401D1C42FA180036E6A3 /* sys_arch.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -169,13 +170,6 @@
 		1BF2D73C1C408E3F00FF8D66 /* queue.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = queue.c; sourceTree = "<group>"; };
 		1BF2D73D1C408E3F00FF8D66 /* tasks.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tasks.c; sourceTree = "<group>"; };
 		1BF2D73E1C408E3F00FF8D66 /* timers.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = timers.c; sourceTree = "<group>"; };
-		1BF83F441C41A2FD0036E6A3 /* bpstruct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bpstruct.h; sourceTree = "<group>"; };
-		1BF83F451C41A2FD0036E6A3 /* cc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cc.h; sourceTree = "<group>"; };
-		1BF83F461C41A2FD0036E6A3 /* epstruct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = epstruct.h; sourceTree = "<group>"; };
-		1BF83F471C41A2FD0036E6A3 /* perf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = perf.h; sourceTree = "<group>"; };
-		1BF83F481C41A2FD0036E6A3 /* sys_arch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sys_arch.h; sourceTree = "<group>"; };
-		1BF83F491C41A2FD0036E6A3 /* lwipopts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lwipopts.h; sourceTree = "<group>"; };
-		1BF83F4A1C41A2FD0036E6A3 /* sys_arch.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sys_arch.c; sourceTree = "<group>"; };
 		1BF83F4D1C41A2FD0036E6A3 /* api_lib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = api_lib.c; sourceTree = "<group>"; };
 		1BF83F4E1C41A2FD0036E6A3 /* api_msg.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = api_msg.c; sourceTree = "<group>"; };
 		1BF83F4F1C41A2FD0036E6A3 /* err.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = err.c; sourceTree = "<group>"; };
@@ -299,6 +293,40 @@
 		1BF83FD51C41A2FE0036E6A3 /* vj.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = vj.c; sourceTree = "<group>"; };
 		1BF83FD61C41A2FE0036E6A3 /* vj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vj.h; sourceTree = "<group>"; };
 		1BF83FD71C41A2FE0036E6A3 /* slipif.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = slipif.c; sourceTree = "<group>"; };
+		1BF840151C42FA180036E6A3 /* bpstruct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bpstruct.h; sourceTree = "<group>"; };
+		1BF840161C42FA180036E6A3 /* cc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cc.h; sourceTree = "<group>"; };
+		1BF840171C42FA180036E6A3 /* epstruct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = epstruct.h; sourceTree = "<group>"; };
+		1BF840181C42FA180036E6A3 /* perf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = perf.h; sourceTree = "<group>"; };
+		1BF840191C42FA180036E6A3 /* sys_arch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sys_arch.h; sourceTree = "<group>"; };
+		1BF8401A1C42FA180036E6A3 /* etharp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = etharp.c; sourceTree = "<group>"; };
+		1BF8401B1C42FA180036E6A3 /* etharp.diff */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = etharp.diff; sourceTree = "<group>"; };
+		1BF8401C1C42FA180036E6A3 /* lwipopts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lwipopts.h; sourceTree = "<group>"; };
+		1BF8401D1C42FA180036E6A3 /* sys_arch.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sys_arch.c; sourceTree = "<group>"; };
+		1BF840211C42FA2A0036E6A3 /* chip_constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = chip_constants.h; sourceTree = "<group>"; };
+		1BF840221C42FA2A0036E6A3 /* generated_mac_address.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = generated_mac_address.txt; sourceTree = "<group>"; };
+		1BF840241C42FA2A0036E6A3 /* wwd_thread_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wwd_thread_internal.h; sourceTree = "<group>"; };
+		1BF840261C42FA2A0036E6A3 /* wwd_buffer_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wwd_buffer_interface.h; sourceTree = "<group>"; };
+		1BF840271C42FA2A0036E6A3 /* wwd_network_constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wwd_network_constants.h; sourceTree = "<group>"; };
+		1BF840281C42FA2A0036E6A3 /* wwd_network_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wwd_network_interface.h; sourceTree = "<group>"; };
+		1BF8402A1C42FA2A0036E6A3 /* wwd_bus_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wwd_bus_interface.h; sourceTree = "<group>"; };
+		1BF8402B1C42FA2A0036E6A3 /* wwd_sdio_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wwd_sdio_interface.h; sourceTree = "<group>"; };
+		1BF8402C1C42FA2A0036E6A3 /* platform_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = platform_config.h; sourceTree = "<group>"; };
+		1BF8402D1C42FA2A0036E6A3 /* platform_isr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = platform_isr.h; sourceTree = "<group>"; };
+		1BF8402E1C42FA2A0036E6A3 /* platform_peripheral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = platform_peripheral.h; sourceTree = "<group>"; };
+		1BF8402F1C42FA2A0036E6A3 /* resources.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = resources.h; sourceTree = "<group>"; };
+		1BF840311C42FA2A0036E6A3 /* wwd_rtos_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wwd_rtos_interface.h; sourceTree = "<group>"; };
+		1BF840321C42FA2A0036E6A3 /* wifi_nvram_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wifi_nvram_image.h; sourceTree = "<group>"; };
+		1BF840331C42FA2A0036E6A3 /* wwd_buffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wwd_buffer.h; sourceTree = "<group>"; };
+		1BF840341C42FA2A0036E6A3 /* wwd_bus_protocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wwd_bus_protocol.h; sourceTree = "<group>"; };
+		1BF840351C42FA2A0036E6A3 /* wwd_constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wwd_constants.h; sourceTree = "<group>"; };
+		1BF840361C42FA2A0036E6A3 /* wwd_FreeRTOS_systick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wwd_FreeRTOS_systick.h; sourceTree = "<group>"; };
+		1BF840371C42FA2A0036E6A3 /* wwd_management.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wwd_management.h; sourceTree = "<group>"; };
+		1BF840381C42FA2A0036E6A3 /* wwd_network.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wwd_network.h; sourceTree = "<group>"; };
+		1BF840391C42FA2A0036E6A3 /* wwd_platform_common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wwd_platform_common.h; sourceTree = "<group>"; };
+		1BF8403A1C42FA2A0036E6A3 /* wwd_rtos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wwd_rtos.h; sourceTree = "<group>"; };
+		1BF8403B1C42FA2A0036E6A3 /* wwd_structures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wwd_structures.h; sourceTree = "<group>"; };
+		1BF8403C1C42FA2A0036E6A3 /* wwd_wifi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wwd_wifi.h; sourceTree = "<group>"; };
+		1BF8403D1C42FA2A0036E6A3 /* wwd_wlioctl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wwd_wlioctl.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -335,6 +363,7 @@
 				1BF2D7231C408E3F00FF8D66 /* FreeRTOS */,
 				1BF83F411C41A2FD0036E6A3 /* LwIP */,
 				1BF2D6FD1C406EC200FF8D66 /* Includes */,
+				1BF840201C42FA2A0036E6A3 /* WICEDIncludes */,
 				1BF2D6F81C406EB100FF8D66 /* Linker */,
 				1BF2D7191C406ED900FF8D66 /* README.md */,
 				1B8861471BAB703F003B82FC /* Products */,
@@ -466,33 +495,11 @@
 		1BF83F411C41A2FD0036E6A3 /* LwIP */ = {
 			isa = PBXGroup;
 			children = (
-				1BF83F421C41A2FD0036E6A3 /* port */,
+				1BF840131C42FA180036E6A3 /* port */,
 				1BF83F4B1C41A2FD0036E6A3 /* src */,
 			);
 			path = LwIP;
 			sourceTree = SOURCE_ROOT;
-		};
-		1BF83F421C41A2FD0036E6A3 /* port */ = {
-			isa = PBXGroup;
-			children = (
-				1BF83F431C41A2FD0036E6A3 /* arch */,
-				1BF83F491C41A2FD0036E6A3 /* lwipopts.h */,
-				1BF83F4A1C41A2FD0036E6A3 /* sys_arch.c */,
-			);
-			path = port;
-			sourceTree = "<group>";
-		};
-		1BF83F431C41A2FD0036E6A3 /* arch */ = {
-			isa = PBXGroup;
-			children = (
-				1BF83F441C41A2FD0036E6A3 /* bpstruct.h */,
-				1BF83F451C41A2FD0036E6A3 /* cc.h */,
-				1BF83F461C41A2FD0036E6A3 /* epstruct.h */,
-				1BF83F471C41A2FD0036E6A3 /* perf.h */,
-				1BF83F481C41A2FD0036E6A3 /* sys_arch.h */,
-			);
-			path = arch;
-			sourceTree = "<group>";
 		};
 		1BF83F4B1C41A2FD0036E6A3 /* src */ = {
 			isa = PBXGroup;
@@ -752,20 +759,108 @@
 			path = ppp;
 			sourceTree = "<group>";
 		};
+		1BF840131C42FA180036E6A3 /* port */ = {
+			isa = PBXGroup;
+			children = (
+				1BF840141C42FA180036E6A3 /* arch */,
+				1BF8401A1C42FA180036E6A3 /* etharp.c */,
+				1BF8401B1C42FA180036E6A3 /* etharp.diff */,
+				1BF8401C1C42FA180036E6A3 /* lwipopts.h */,
+				1BF8401D1C42FA180036E6A3 /* sys_arch.c */,
+			);
+			path = port;
+			sourceTree = "<group>";
+		};
+		1BF840141C42FA180036E6A3 /* arch */ = {
+			isa = PBXGroup;
+			children = (
+				1BF840151C42FA180036E6A3 /* bpstruct.h */,
+				1BF840161C42FA180036E6A3 /* cc.h */,
+				1BF840171C42FA180036E6A3 /* epstruct.h */,
+				1BF840181C42FA180036E6A3 /* perf.h */,
+				1BF840191C42FA180036E6A3 /* sys_arch.h */,
+			);
+			path = arch;
+			sourceTree = "<group>";
+		};
+		1BF840201C42FA2A0036E6A3 /* WICEDIncludes */ = {
+			isa = PBXGroup;
+			children = (
+				1BF840211C42FA2A0036E6A3 /* chip_constants.h */,
+				1BF840221C42FA2A0036E6A3 /* generated_mac_address.txt */,
+				1BF840231C42FA2A0036E6A3 /* internal */,
+				1BF840251C42FA2A0036E6A3 /* network */,
+				1BF840291C42FA2A0036E6A3 /* platform */,
+				1BF8402C1C42FA2A0036E6A3 /* platform_config.h */,
+				1BF8402D1C42FA2A0036E6A3 /* platform_isr.h */,
+				1BF8402E1C42FA2A0036E6A3 /* platform_peripheral.h */,
+				1BF8402F1C42FA2A0036E6A3 /* resources.h */,
+				1BF840301C42FA2A0036E6A3 /* RTOS */,
+				1BF840321C42FA2A0036E6A3 /* wifi_nvram_image.h */,
+				1BF840331C42FA2A0036E6A3 /* wwd_buffer.h */,
+				1BF840341C42FA2A0036E6A3 /* wwd_bus_protocol.h */,
+				1BF840351C42FA2A0036E6A3 /* wwd_constants.h */,
+				1BF840361C42FA2A0036E6A3 /* wwd_FreeRTOS_systick.h */,
+				1BF840371C42FA2A0036E6A3 /* wwd_management.h */,
+				1BF840381C42FA2A0036E6A3 /* wwd_network.h */,
+				1BF840391C42FA2A0036E6A3 /* wwd_platform_common.h */,
+				1BF8403A1C42FA2A0036E6A3 /* wwd_rtos.h */,
+				1BF8403B1C42FA2A0036E6A3 /* wwd_structures.h */,
+				1BF8403C1C42FA2A0036E6A3 /* wwd_wifi.h */,
+				1BF8403D1C42FA2A0036E6A3 /* wwd_wlioctl.h */,
+			);
+			path = WICEDIncludes;
+			sourceTree = "<group>";
+		};
+		1BF840231C42FA2A0036E6A3 /* internal */ = {
+			isa = PBXGroup;
+			children = (
+				1BF840241C42FA2A0036E6A3 /* wwd_thread_internal.h */,
+			);
+			path = internal;
+			sourceTree = "<group>";
+		};
+		1BF840251C42FA2A0036E6A3 /* network */ = {
+			isa = PBXGroup;
+			children = (
+				1BF840261C42FA2A0036E6A3 /* wwd_buffer_interface.h */,
+				1BF840271C42FA2A0036E6A3 /* wwd_network_constants.h */,
+				1BF840281C42FA2A0036E6A3 /* wwd_network_interface.h */,
+			);
+			path = network;
+			sourceTree = "<group>";
+		};
+		1BF840291C42FA2A0036E6A3 /* platform */ = {
+			isa = PBXGroup;
+			children = (
+				1BF8402A1C42FA2A0036E6A3 /* wwd_bus_interface.h */,
+				1BF8402B1C42FA2A0036E6A3 /* wwd_sdio_interface.h */,
+			);
+			path = platform;
+			sourceTree = "<group>";
+		};
+		1BF840301C42FA2A0036E6A3 /* RTOS */ = {
+			isa = PBXGroup;
+			children = (
+				1BF840311C42FA2A0036E6A3 /* wwd_rtos_interface.h */,
+			);
+			path = RTOS;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXLegacyTarget section */
-		1B8861031BA86FD7003B82FC /* LwIP */ = {
+		1B8861031BA86FD7003B82FC /* Template */ = {
 			isa = PBXLegacyTarget;
 			buildArgumentsString = upload;
-			buildConfigurationList = 1B8861061BA86FD7003B82FC /* Build configuration list for PBXLegacyTarget "LwIP" */;
+			buildConfigurationList = 1B8861061BA86FD7003B82FC /* Build configuration list for PBXLegacyTarget "Template" */;
 			buildPhases = (
 			);
 			buildToolPath = /usr/bin/make;
 			buildWorkingDirectory = "";
 			dependencies = (
 			);
-			name = LwIP;
+			name = Template;
 			passBuildSettingsInEnvironment = 1;
 			productName = OLED;
 		};
@@ -806,7 +901,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 1B8861021BA86FD7003B82FC /* Build configuration list for PBXProject "LwIP" */;
+			buildConfigurationList = 1B8861021BA86FD7003B82FC /* Build configuration list for PBXProject "Template" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -818,7 +913,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1B8861031BA86FD7003B82FC /* LwIP */,
+				1B8861031BA86FD7003B82FC /* Template */,
 				1B8861451BAB703F003B82FC /* Dummy target for indexing */,
 			);
 		};
@@ -857,7 +952,6 @@
 				1BF840061C41A2FE0036E6A3 /* chap.c in Sources */,
 				1BF2D7441C408E3F00FF8D66 /* queue.c in Sources */,
 				1BF83FF01C41A2FE0036E6A3 /* ip6_addr.c in Sources */,
-				1BF83FD81C41A2FE0036E6A3 /* sys_arch.c in Sources */,
 				1BF83FEC1C41A2FE0036E6A3 /* ip_frag.c in Sources */,
 				1BF83FF41C41A2FE0036E6A3 /* pbuf.c in Sources */,
 				1BF840111C41A2FE0036E6A3 /* vj.c in Sources */,
@@ -870,6 +964,7 @@
 				1B8861501BAB7067003B82FC /* LED.c in Sources */,
 				1BF83FDE1C41A2FE0036E6A3 /* netifapi.c in Sources */,
 				1BF83FE91C41A2FE0036E6A3 /* inet_chksum.c in Sources */,
+				1BF8401E1C42FA180036E6A3 /* etharp.c in Sources */,
 				1BF2D7401C408E3F00FF8D66 /* event_groups.c in Sources */,
 				1B88614E1BAB7062003B82FC /* Button.c in Sources */,
 				1BF840051C41A2FE0036E6A3 /* auth.c in Sources */,
@@ -880,6 +975,7 @@
 				1BF83FEA1C41A2FE0036E6A3 /* ip.c in Sources */,
 				1BF83FE61C41A2FE0036E6A3 /* icmp.c in Sources */,
 				1BF83FE31C41A2FE0036E6A3 /* dns.c in Sources */,
+				1BF8401F1C42FA180036E6A3 /* sys_arch.c in Sources */,
 				1B8861531BAB7076003B82FC /* Startup.c in Sources */,
 				1BF2D71D1C4071A800FF8D66 /* Printf.c in Sources */,
 				1BF2D7411C408E3F00FF8D66 /* list.c in Sources */,
@@ -997,7 +1093,7 @@
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PATH = "$PATH:/usr/local/bin/:/usr/local/gcc-arm-none-eabi/bin/";
-				PRODUCT_NAME = LwIP;
+				PRODUCT_NAME = Template;
 			};
 			name = Debug;
 		};
@@ -1007,7 +1103,7 @@
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PATH = "$PATH:/usr/local/bin/:/usr/local/gcc-arm-none-eabi/bin/";
-				PRODUCT_NAME = LwIP;
+				PRODUCT_NAME = Template;
 			};
 			name = Release;
 		};
@@ -1036,7 +1132,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1B8861021BA86FD7003B82FC /* Build configuration list for PBXProject "LwIP" */ = {
+		1B8861021BA86FD7003B82FC /* Build configuration list for PBXProject "Template" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1B8861041BA86FD7003B82FC /* Debug */,
@@ -1045,7 +1141,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1B8861061BA86FD7003B82FC /* Build configuration list for PBXLegacyTarget "LwIP" */ = {
+		1B8861061BA86FD7003B82FC /* Build configuration list for PBXLegacyTarget "Template" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1B8861071BA86FD7003B82FC /* Debug */,
