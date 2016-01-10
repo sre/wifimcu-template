@@ -8,11 +8,25 @@ It uses a basic arm-none-eabi GCC toolchain to build, and OpenOCD to upload code
 
 This code should build with any basic arm-none-eabi toolchain that has support for the Cortex-M4 FPU, but it is developed using the official ARM-maintained toolchain from https://launchpad.net/gcc-arm-embedded.
 
+## Building ##
+
+* `make` builds the `.elf` and `.bin` files for the project.
+
+* `make upload` uses OpenOCD to talk to an STLink v2 programmer and uploads and runs the code on the board.
+
+* `make debugserver` starts OpenOCD as a debug server, again using an STLink v2 programmer.
+
+* `make debug` builds and connects to the debug server to upload and run the code.
+
+* `make clean` cleans up all build product and dependency files.
+
 ## Installing WICED ##
 
 As the WICED files are restrictively licensed, you will need to download them separtely from Broadcom. Only WICED-SDK-3.4.0-AWS is currently supported. You should download `WICED-SDK-3.4.0-AWS.7z.zip` from Broadcom's website, unpack it (twice), then put the contained directories in the `WICED` directory.
 
 Only the `WICED` and `libraries` folders are actually used.
+
+The `WICEDIncludes` directories contains symlinks to some files under the `WICED` directory, for convenience.
 
 ## License ##
 
