@@ -21,7 +21,7 @@
 
 
 
-#define MAKE_IPV4_ADDRESS(a,b,c,d) ((((uint32_t)(a))<< 24)|(((uint32_t)(b))<<16)|(((uint32_t) (c)) << 8)|((uint32_t)(d)))
+#define MAKE_IPV4_ADDRESS(a,b,c,d) ((((uint32_t)(a))<<24)|(((uint32_t)(b))<<16)|(((uint32_t)(c))<<8)|((uint32_t)(d)))
 
 #define AP_SSID "YUKI.N"
 #define AP_PASS ""
@@ -37,13 +37,12 @@
 #define IP_ADDR MAKE_IPV4_ADDRESS(192,168,1,95)
 #define GW_ADDR MAKE_IPV4_ADDRESS(192,168,1,1)
 #define NETMASK MAKE_IPV4_ADDRESS(255,255,255,0)
-// #define PING_TARGET MAKE_IPV4_ADDRESS( 192, 168,   1, 2 ) */  // Uncomment if you want to ping a specific IP instead of the gateway
+//#define PING_TARGET MAKE_IPV4_ADDRESS(45,55,226,51) // Uncomment if you want to ping a specific IP instead of the gateway
 
 #define PING_RCV_TIMEOUT 1000 // ping receive timeout - in milliseconds
 #define PING_DELAY 1000 // Delay between ping response/timeout and the next ping send - in milliseconds
 #define PING_ID 0xafaf
 #define PING_DATA_SIZE 32 // ping additional data size to include in the packet
-#define JOIN_TIMEOUT 10000 // timeout for joining the wireless network in milliseconds = 10 seconds
 #define APP_THREAD_STACKSIZE 5120
 
 
