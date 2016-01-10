@@ -20,11 +20,13 @@ This code should build with any basic arm-none-eabi toolchain that has support f
 
 * `make clean` cleans up all build product and dependency files.
 
+For OS X users, there's a convenience Xcode project for code editing. Building should execute `make upload`.
+
 ## Installing WICED ##
 
 As the WICED files are restrictively licensed, you will need to download them separtely from Broadcom. Only WICED-SDK-3.4.0-AWS is currently supported. You should download `WICED-SDK-3.4.0-AWS.7z.zip` from Broadcom's website, unpack it (twice), then put the contained directories in the `WICED` directory.
 
-Only the `WICED` and `libraries` folders are actually used.
+Only the `include`, `libraries`, `resources` and `WICED` directories are actually used.
 
 The `WICEDIncludes` directories contains symlinks to some files under the `WICED` directory, for convenience.
 
