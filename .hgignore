@@ -4,4 +4,4 @@ glob:*.xcuserdatad
 glob:Build
 glob:*.elf
 glob:*.bin
-
+glob:WICED

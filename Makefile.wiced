@@ -1,0 +1,127 @@
+NAME = WICED
+
+CC = arm-none-eabi-gcc
+AR = arm-none-eabi-ar
+OBJCOPY = arm-none-eabi-objcopy
+
+#DEFINES = -DSTM32F407xx
+#DEFINES = -DSTM32F407xx -DEnableOverclocking
+#LINKERSCRIPT = Linker-STM32F407xG.ld
+
+#DEFINES = -DSTM32F429xx
+#LINKERSCRIPT = Linker-STM32F429xI.ld
+
+#DEFINES = -DSTM32F446xx
+#LINKERSCRIPT = Linker-STM32F446xE.ld
+
+DEFINES =	-DSTM32F411xE \
+			-DHSEFrequency=26000000 \
+			-DWICED_USE_WIFI_P2P_INTERFACE \
+			-DvTaskFreeTerminated\(a\)=pdTRUE \
+			-DxTaskIsTaskFinished\(a\)=pdFALSE \
+			-DWICED_DISABLE_BOOTLOADER \
+			-DWICED_DISABLE_STDIO \
+			-DWICED_DISABLE_MCU_POWERSAVE \
+			-Dmemp_in_use\(a\)=0 \
+			-DPBUF_POOL_RX=PBUF_POOL \
+			-DPBUF_POOL_TX=PBUF_POOL \
+			-DMEMP_PBUF_POOL_TX=1234 \
+			-DMEMP_PBUF_POOL_RX=5678 \
+
+C_OPTS =	-std=c99 \
+			-mthumb \
+			-mcpu=cortex-m4 \
+			-mfloat-abi=hard \
+			-mfpu=fpv4-sp-d16 \
+			-I. \
+			-IFreeRTOS/include \
+			-IFreeRTOS/portable/GCC/ARM_CM4F \
+			-ILwIP/src/include \
+			-ILwIP/src/include/ipv4 \
+			-ILwIP/port \
+			-IWICED/include \
+			-IWICED/libraries/utilities/TLV \
+			-IWICED/libraries/utilities/ring_buffer \
+			-IWICED/libraries/drivers/spi_flash \
+			-IWICED/libraries/filesystems/wicedfs \
+			-IWICED/WICED \
+			-IWICED/WICED/network/LwIP/WWD \
+			-IWICED/WICED/platform/ARM_CM4 \
+			-IWICED/WICED/platform/ARM_CM4/CMSIS \
+			-IWICED/WICED/platform/GCC \
+			-IWICED/WICED/platform/include \
+			-IWICED/WICED/platform/MCU \
+			-IWICED/WICED/platform/MCU/STM32F4xx \
+			-IWICED/WICED/platform/MCU/STM32F4xx/peripherals \
+			-IWICED/WICED/platform/MCU/STM32F4xx/peripherals/libraries \
+			-IWICED/WICED/platform/MCU/STM32F4xx/peripherals/libraries/inc \
+			-IWICED/WICED/platform/MCU/STM32F4xx/WAF \
+			-IWICED/WICED/RTOS/FreeRTOS/WWD \
+			-IWICED/WICED/RTOS/FreeRTOS/WWD/ARM_CM3 \
+			-IWICED/WICED/security/BESL/include \
+			-IWICED/WICED/WWD \
+			-IWICED/WICED/WWD/include \
+			-IWICED/WICED/WWD/include/network \
+			-IWICED/WICED/WWD/include/RTOS \
+			-IWICED/WICED/WWD/internal/bus_protocols/SDIO \
+			-IWICED/WICED/WWD/internal/chips/43362A2 \
+			-IWICEDIncludes \
+			-g \
+			-Werror \
+			-O0
+
+SOURCE_DIR = .
+BUILD_DIR = Build
+
+C_FILES =	WICED/libraries/utilities/TLV/tlv.c \
+			WICED/WICED/network/LwIP/WWD/wwd_buffer.c \
+			WICED/WICED/network/LwIP/WWD/wwd_network.c \
+			WICED/WICED/platform/MCU/platform_resource.c \
+			WICED/WICED/platform/MCU/wwd_resources.c \
+			WICED/WICED/RTOS/FreeRTOS/WWD/wwd_rtos.c \
+			WICED/WICED/WWD/internal/wwd_internal.c \
+			WICED/WICED/WWD/internal/wwd_management.c \
+			WICED/WICED/WWD/internal/wwd_sdpcm.c \
+			WICED/WICED/WWD/internal/wwd_thread.c \
+			WICED/WICED/WWD/internal/wwd_thread_internal.c \
+			WICED/WICED/WWD/internal/wwd_wifi.c \
+			WICED/WICED/WWD/internal/bus_protocols/wwd_bus_common.c \
+			WICED/WICED/WWD/internal/bus_protocols/SDIO/wwd_bus_protocol.c \
+			WICED/WICED/WWD/internal/chips/43362A2/wwd_ap.c \
+			$(BUILD_DIR)/Firmware.c
+
+S_FILES = 
+
+OBJS = $(C_FILES:%.c=$(BUILD_DIR)/%.o) $(S_FILES:%.S=$(BUILD_DIR)/%.o)
+
+ALL_CFLAGS = $(C_OPTS) $(DEFINES) $(CFLAGS)
+
+AUTODEPENDENCY_CFLAGS=-MMD -MF$(@:.o=.d) -MT$@
+
+
+
+
+all: $(BUILD_DIR)/$(NAME).a
+
+clean:
+	rm -rf $(BUILD_DIR) $(BUILD_DIR)/$(NAME).a
+
+$(BUILD_DIR)/$(NAME).a: $(OBJS)
+	@rm -f $@
+	$(AR) -r $@ $^
+
+.SUFFIXES: .o .c .S
+
+$(BUILD_DIR)/%.o: $(SOURCE_DIR)/%.c
+	@mkdir -p $(dir $@)
+	$(CC) $(ALL_CFLAGS) $(AUTODEPENDENCY_CFLAGS) -c $< -o $@
+
+$(BUILD_DIR)/%.o: $(SOURCE_DIR)/%.S
+	@mkdir -p $(dir $@)
+	$(CC) $(ALL_CFLAGS) $(AUTODEPENDENCY_CFLAGS) -c $< -o $@
+
+$(BUILD_DIR)/Firmware.c: WICED/resources/firmware/43362/43362A2.bin
+	perl Tools/ConvertFirmware.pl <$< >$@
+
+-include $(OBJS:.o=.d)
+

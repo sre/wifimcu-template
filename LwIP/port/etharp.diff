@@ -1,0 +1,67 @@
+--- ../../LwIP/lwip-1.4.0.rc1/src/netif/etharp.c	2010-07-16 17:10:58.000000000 +0300
++++ WICED/WICED/network/LwIP/ver1.4.0.rc1/src/netif/etharp.c	2016-01-10 12:01:20.000000000 +0200
+@@ -65,6 +65,10 @@
+ const struct eth_addr ethbroadcast = {{0xff,0xff,0xff,0xff,0xff,0xff}};
+ const struct eth_addr ethzero = {{0,0,0,0,0,0}};
+ 
++#ifndef SUB_ETHERNET_HEADER_SPACE
++#define SUB_ETHERNET_HEADER_SPACE (0)
++#endif //ifdef SUB_ETHERNET_HEADER_SPACE
++
+ #if LWIP_ARP /* don't build if not configured for use in lwipopts.h */
+ 
+ /** the time an ARP entry stays valid after its last update,
+@@ -133,7 +137,6 @@
+   #error "ARP_TABLE_SIZE must fit in an s8_t, you have to reduce it in your lwipopts.h"
+ #endif
+ 
+-
+ #if ARP_QUEUEING
+ /**
+  * Free a complete queue of etharp entries
+@@ -157,7 +160,7 @@
+ #endif /* ARP_QUEUEING */
+ 
+ /** Clean up ARP table entries */
+-static void
++void
+ free_entry(int i)
+ {
+   /* remove from SNMP ARP index tree */
+@@ -1021,8 +1024,12 @@
+     }
+     if(copy_needed) {
+       /* copy the whole packet into new pbufs */
+-      p = pbuf_alloc(PBUF_RAW, p->tot_len, PBUF_RAM);
++      p = pbuf_alloc(PBUF_RAW, p->tot_len+SUB_ETHERNET_HEADER_SPACE, PBUF_RAM);
+       if(p != NULL) {
++        if ( 0 != pbuf_header( p, (s16_t)(-SUB_ETHERNET_HEADER_SPACE) ) ) {
++          pbuf_free(p);
++          p = NULL;
++        }
+         if (pbuf_copy(p, q) != ERR_OK) {
+           pbuf_free(p);
+           p = NULL;
+@@ -1110,7 +1117,7 @@
+ #endif /* LWIP_AUTOIP */
+ 
+   /* allocate a pbuf for the outgoing ARP request packet */
+-  p = pbuf_alloc(PBUF_RAW, SIZEOF_ETHARP_PACKET, PBUF_RAM);
++  p = pbuf_alloc(PBUF_RAW, SIZEOF_ETHARP_PACKET+SUB_ETHERNET_HEADER_SPACE, PBUF_RAM);
+   /* could allocate a pbuf for an ARP request? */
+   if (p == NULL) {
+     LWIP_DEBUGF(ETHARP_DEBUG | LWIP_DBG_TRACE | LWIP_DBG_LEVEL_SERIOUS,
+@@ -1118,6 +1125,13 @@
+     ETHARP_STATS_INC(etharp.memerr);
+     return ERR_MEM;
+   }
++  if ( 0 != pbuf_header( p, (s16_t)(-SUB_ETHERNET_HEADER_SPACE) ) ) {
++      LWIP_DEBUGF(ETHARP_DEBUG | LWIP_DBG_TRACE | LWIP_DBG_LEVEL_SERIOUS,
++        ("etharp_raw: could not move pbuf header for ARP request.\n"));
++      ETHARP_STATS_INC(etharp.memerr);
++      return ERR_MEM;
++  }
++
+   LWIP_ASSERT("check that first pbuf can hold struct etharp_hdr",
+               (p->len >= SIZEOF_ETHARP_PACKET));
+ 

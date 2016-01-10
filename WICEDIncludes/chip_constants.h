@@ -1,0 +1,1 @@
+../WICED/WICED/WWD/internal/chips/43362A2/chip_constants.h

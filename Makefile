@@ -1,4 +1,4 @@
-NAME = FreeRTOS
+NAME = WiFi
 
 CC = arm-none-eabi-gcc
 LD = arm-none-eabi-gcc
@@ -18,7 +18,11 @@ GDB = arm-none-eabi-gdb
 #LINKERSCRIPT = Linker/Linker-STM32F446xE.ld
 #INTERFACE = interface/stlink-v2-1.cfg
 
-DEFINES = -DSTM32F411xE -DWIFIMCU -DHSEFrequency=26000000
+DEFINES =	-DSTM32F411xE \
+			-DWIFIMCU \
+			-DHSEFrequency=26000000 \
+			-DLWIP_TIMEVAL_PRIVATE=0
+
 LINKERSCRIPT = Linker/Linker-STM32F411xE.ld
 INTERFACE = interface/stlink-v2.cfg
 
@@ -34,6 +38,7 @@ C_OPTS =	-std=c99 \
 			-ILwIP/src/include \
 			-ILwIP/src/include/ipv4 \
 			-ILwIP/port \
+			-IWICEDIncludes \
 			-g \
 			-Werror \
 			-O0
@@ -50,6 +55,7 @@ C_FILES =	Button.c \
 			Printf.c \
 			Startup.c \
 			System.c \
+			WICEDPlatform.c \
 			FreeRTOS/croutine.c \
 			FreeRTOS/event_groups.c \
 			FreeRTOS/list.c \
@@ -90,7 +96,7 @@ C_FILES =	Button.c \
 			LwIP/src/core/ipv4/ip.c \
 			LwIP/src/core/ipv4/ip_addr.c \
 			LwIP/src/core/ipv4/ip_frag.c \
-			LwIP/src/netif/etharp.c \
+			LwIP/port/etharp.c \
 			LwIP/port/sys_arch.c
 
 S_FILES = 
@@ -136,8 +142,12 @@ clean:
 $(NAME).bin: $(NAME).elf
 	$(OBJCOPY) -O binary $(NAME).elf $(NAME).bin
 
-$(NAME).elf: $(OBJS)
+$(NAME).elf: $(OBJS) $(BUILD_DIR)/WICED.a
 	$(LD) $(ALL_LDFLAGS) -o $@ $^ $(LIBS)
+
+.PHONY: $(BUILD_DIR)/WICED.a
+$(BUILD_DIR)/WICED.a:
+	make -f Makefile.wiced
 
 .SUFFIXES: .o .c .S
 
