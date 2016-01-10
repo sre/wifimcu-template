@@ -30,6 +30,14 @@ Only the `include`, `libraries`, `resources` and `WICED` directories are actuall
 
 The `WICEDIncludes` directories contains symlinks to some files under the `WICED` directory, for convenience.
 
+## Notes ##
+
+The WiFi chip driver uses the driver code from WICED, with a custom driver to talk to the hardware (SDIO, IO pins and clocks). This is somewhat hackish, and some corners were cut, for instance:
+
+* The WICED code has a powersave mode for the WiFi chip. It is unclear if this works on the EMW3165, but it certainly doesn't work on with this driver.
+* The only way to change the MAC address is to edit `WICEDIncludes/generated_mac_address.txt` by hand.
+* The WiFi chip firmware data is stored in normal flash memory. This uses up a lot of space. It should be moved to the external flash, but this is not yet implemented.
+
 ## License ##
 
 Except for the FreeRTOS and LwIP parts, which are released under their own license, this code is released into the public domain with no warranties. If that is not suitable, it is also available under the [CC0 license](http://creativecommons.org/publicdomain/zero/1.0/).
