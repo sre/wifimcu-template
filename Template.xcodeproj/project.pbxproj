@@ -12,6 +12,7 @@
 		1B8861511BAB7076003B82FC /* Main.c in Sources */ = {isa = PBXBuildFile; fileRef = 1B88612E1BA871D2003B82FC /* Main.c */; };
 		1B8861531BAB7076003B82FC /* Startup.c in Sources */ = {isa = PBXBuildFile; fileRef = 1B8861311BA871D2003B82FC /* Startup.c */; };
 		1B8861541BAB7076003B82FC /* System.c in Sources */ = {isa = PBXBuildFile; fileRef = 1B8861321BA871D2003B82FC /* System.c */; };
+		1BD948CA1C4464DF0086CD7F /* WICEDPlatform.c in Sources */ = {isa = PBXBuildFile; fileRef = 1BD948C91C4464DF0086CD7F /* WICEDPlatform.c */; };
 		1BF2D71A1C406ED900FF8D66 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 1BF2D7191C406ED900FF8D66 /* README.md */; };
 		1BF2D71D1C4071A800FF8D66 /* Printf.c in Sources */ = {isa = PBXBuildFile; fileRef = 1BF2D71B1C4071A800FF8D66 /* Printf.c */; };
 		1BF2D7201C40864600FF8D66 /* FormatString.c in Sources */ = {isa = PBXBuildFile; fileRef = 1BF2D71E1C40864600FF8D66 /* FormatString.c */; };
@@ -110,6 +111,7 @@
 		1B8861321BA871D2003B82FC /* System.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = System.c; sourceTree = "<group>"; };
 		1B8861331BA871D2003B82FC /* System.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = System.h; sourceTree = "<group>"; };
 		1B8861461BAB703F003B82FC /* Dummy target for indexing */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Dummy target for indexing"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1BD948C91C4464DF0086CD7F /* WICEDPlatform.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = WICEDPlatform.c; sourceTree = "<group>"; };
 		1BF2D6F91C406EB100FF8D66 /* Linker-STM32F407xG.ld */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Linker-STM32F407xG.ld"; sourceTree = "<group>"; };
 		1BF2D6FA1C406EB100FF8D66 /* Linker-STM32F411xE.ld */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Linker-STM32F411xE.ld"; sourceTree = "<group>"; };
 		1BF2D6FB1C406EB100FF8D66 /* Linker-STM32F429xI.ld */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Linker-STM32F429xI.ld"; sourceTree = "<group>"; };
@@ -359,6 +361,7 @@
 				1B8861321BA871D2003B82FC /* System.c */,
 				1B8861331BA871D2003B82FC /* System.h */,
 				1BF2D71C1C4071A800FF8D66 /* USART.h */,
+				1BD948C91C4464DF0086CD7F /* WICEDPlatform.c */,
 				1B88612F1BA871D2003B82FC /* Makefile */,
 				1BF2D7231C408E3F00FF8D66 /* FreeRTOS */,
 				1BF83F411C41A2FD0036E6A3 /* LwIP */,
@@ -959,6 +962,7 @@
 				1BF840031C41A2FE0036E6A3 /* etharp.c in Sources */,
 				1BF840011C41A2FE0036E6A3 /* timers.c in Sources */,
 				1BF83FF71C41A2FE0036E6A3 /* asn1_enc.c in Sources */,
+				1BD948CA1C4464DF0086CD7F /* WICEDPlatform.c in Sources */,
 				1BF83FF81C41A2FE0036E6A3 /* mib2.c in Sources */,
 				1BF8400E1C41A2FE0036E6A3 /* ppp.c in Sources */,
 				1B8861501BAB7067003B82FC /* LED.c in Sources */,
