@@ -37,7 +37,7 @@
 #define IP_ADDR MAKE_IPV4_ADDRESS(192,168,1,95)
 #define GW_ADDR MAKE_IPV4_ADDRESS(192,168,1,1)
 #define NETMASK MAKE_IPV4_ADDRESS(255,255,255,0)
-//snt#define PING_TARGET MAKE_IPV4_ADDRESS(45,55,226,51) // Uncomment if you want to ping a specific IP instead of the gateway
+#define PING_TARGET MAKE_IPV4_ADDRESS(45,55,226,51) // Uncomment if you want to ping a specific IP instead of the gateway
 
 #define PING_RCV_TIMEOUT 1000 // ping receive timeout - in milliseconds
 #define PING_DELAY 1000 // Delay between ping response/timeout and the next ping send - in milliseconds
@@ -176,6 +176,10 @@ static void StartupTask(void *parameters)
 		printf("Failed!\n");
 		vTaskDelete(NULL);
 	}
+	printf("Done.\n");
+
+	printf("Setting WICED WiFi driver as default network interface... ");
+	netif_set_default(&wiced_if);
 	printf("Done.\n");
 
 	if(USE_DHCP)
