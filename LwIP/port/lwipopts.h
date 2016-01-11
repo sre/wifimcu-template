@@ -14,7 +14,8 @@
 
 #define LWIP_TIMEVAL_PRIVATE 0
 
-//#define LWIP_NETIF_HOSTNAME 1
+#define LWIP_NETIF_HOSTNAME 1
+static char *lwip_hostname_ptr="EMW3165-Template"; // For weird WICED code.
 
 #define TCPIP_THREAD_PRIO 7
 
