@@ -37,7 +37,7 @@
 #define IP_ADDR MAKE_IPV4_ADDRESS(192,168,1,95)
 #define GW_ADDR MAKE_IPV4_ADDRESS(192,168,1,1)
 #define NETMASK MAKE_IPV4_ADDRESS(255,255,255,0)
-//#define PING_TARGET MAKE_IPV4_ADDRESS(45,55,226,51) // Uncomment if you want to ping a specific IP instead of the gateway
+//snt#define PING_TARGET MAKE_IPV4_ADDRESS(45,55,226,51) // Uncomment if you want to ping a specific IP instead of the gateway
 
 #define PING_RCV_TIMEOUT 1000 // ping receive timeout - in milliseconds
 #define PING_DELAY 1000 // Delay between ping response/timeout and the next ping send - in milliseconds
@@ -131,7 +131,7 @@ static void StartupTask(void *parameters)
 
 	printf("Joining network \"" AP_SSID "\"... ");
 
-	static const wiced_ssid_t ap_ssid =
+	static const wiced_ssid_t ap_ssid=
 	{
 		.length=sizeof(AP_SSID)-1,
 		.value=AP_SSID,
@@ -260,10 +260,10 @@ static void PingFunction(struct ip_addr target)
 	lwip_setsockopt(socket,SOL_SOCKET,SO_RCVTIMEO,&timeout,sizeof(timeout));
 
 	printf("Pinging: %u.%u.%u.%u\n",
-	(htonl(wiced_if.ip_addr.addr)>>24)&0xff,
-	(htonl(wiced_if.ip_addr.addr)>>16)&0xff,
-	(htonl(wiced_if.ip_addr.addr)>>8)&0xff,
-	(htonl(wiced_if.ip_addr.addr))&0xff);
+	(htonl(target.addr)>>24)&0xff,
+	(htonl(target.addr)>>16)&0xff,
+	(htonl(target.addr)>>8)&0xff,
+	(htonl(target.addr))&0xff);
 
 	for(;;)
 	{
