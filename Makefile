@@ -28,9 +28,11 @@ C_OPTS =	-std=c99 \
 			-mfloat-abi=hard \
 			-mfpu=fpv4-sp-d16 \
 			-IIncludes \
+			-fdata-sections \
+			-ffunction-sections \
 			-g \
 			-Werror \
-			-O3
+			-Os
 
 LIBS =	-lm
 
