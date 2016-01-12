@@ -31,9 +31,11 @@ C_OPTS =	-std=c99 \
 			-I. \
 			-IFreeRTOS/include \
 			-IFreeRTOS/portable/GCC/ARM_CM4F \
+			-fdata-sections \
+			-ffunction-sections \
 			-g \
 			-Werror \
-			-O3
+			-Os
 
 LIBS =	-lm
 
@@ -113,4 +115,5 @@ $(BUILD_DIR)/%.o: $(SOURCE_DIR)/%.S
 	$(CC) $(ALL_CFLAGS) $(AUTODEPENDENCY_CFLAGS) -c $< -o $@
 
 -include $(OBJS:.o=.d)
+
 
