@@ -1,4 +1,4 @@
-NAME = FreeRTOS
+NAME = LwIP
 
 CC = arm-none-eabi-gcc
 LD = arm-none-eabi-gcc
