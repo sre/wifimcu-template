@@ -34,9 +34,11 @@ C_OPTS =	-std=c99 \
 			-ILwIP/src/include \
 			-ILwIP/src/include/ipv4 \
 			-ILwIP/port \
+			-fdata-sections \
+			-ffunction-sections \
 			-g \
 			-Werror \
-			-O0
+			-Os
 
 LIBS =	-lm
 
@@ -150,4 +152,5 @@ $(BUILD_DIR)/%.o: $(SOURCE_DIR)/%.S
 	$(CC) $(ALL_CFLAGS) $(AUTODEPENDENCY_CFLAGS) -c $< -o $@
 
 -include $(OBJS:.o=.d)
+
 
