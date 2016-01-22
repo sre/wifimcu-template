@@ -2,13 +2,12 @@
 
 #include "System.h"
 
-static uint8_t stack[8192];
-
 extern uint32_t _data[];
 extern uint32_t _idata[];
 extern uint32_t _edata[];
 extern uint32_t _bss[];
 extern uint32_t _ebss[];
+extern uint8_t _eheap[];
 
 void Reset_Handler() __attribute__((naked,noreturn));
 void Default_Handler() __attribute__((naked,noreturn));
@@ -147,7 +146,7 @@ void FMPI2C1_ER_IRQHandler() __attribute__((weak,alias("Default_Handler")));
 
 __attribute__ ((section(".isr_vector"))) const void *InterruptVectors[NumberOfInterruptTableEntries]=
 {
-	(stack+sizeof(stack)),
+	_eheap,
 	Reset_Handler,
 	NMI_Handler,
 	HardFault_Handler,
@@ -251,7 +250,7 @@ __attribute__ ((section(".isr_vector"))) const void *InterruptVectors[NumberOfIn
 
 __attribute__ ((section(".isr_vector"))) const void *InterruptVectors[NumberOfInterruptTableEntries]=
 {
-	(stack+sizeof(stack)),
+	_eheap,
 	Reset_Handler,
 	NMI_Handler,
 	HardFault_Handler,
@@ -359,7 +358,7 @@ __attribute__ ((section(".isr_vector"))) const void *InterruptVectors[NumberOfIn
 
 __attribute__ ((section(".isr_vector"))) const void *InterruptVectors[NumberOfInterruptTableEntries]=
 {
-	(stack+sizeof(stack)),
+	_eheap,
 	Reset_Handler,
 	NMI_Handler,
 	HardFault_Handler,
@@ -472,7 +471,7 @@ __attribute__ ((section(".isr_vector"))) const void *InterruptVectors[NumberOfIn
 
 __attribute__ ((section(".isr_vector"))) const void *InterruptVectors[NumberOfInterruptTableEntries]=
 {
-	(stack+sizeof(stack)),
+	_eheap,
 	Reset_Handler,
 	NMI_Handler,
 	HardFault_Handler,
