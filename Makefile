@@ -4,6 +4,8 @@ CC = arm-none-eabi-gcc
 LD = arm-none-eabi-gcc
 OBJCOPY = arm-none-eabi-objcopy
 GDB = arm-none-eabi-gdb
+SIZE = arm-none-eabi-size
+NM = arm-none-eabi-nm
 
 #DEFINES = -DSTM32F407xx -DSTM32F4DISCOVERY
 #DEFINES = -DSTM32F407xx -DSTM32F4DISCOVERY -DEnableOverclocking
@@ -92,6 +94,11 @@ $(NAME).bin: $(NAME).elf
 
 $(NAME).elf: $(OBJS)
 	$(LD) $(ALL_LDFLAGS) -o $@ $^ $(LIBS)
+	@$(SIZE) $@
+	@printf "Binary size: "
+	@$(SIZE) Blinker.elf | tail -n1 | awk '{print $$1+$$2}'
+	@printf "Available heap: "
+	@echo $$((0x`$(NM) $@ | grep _eheap | awk '{print $$1}'`))-$$((0x`$(NM) $@ | grep _heap | awk '{print $$1}'`)) | bc
 
 .SUFFIXES: .o .c .S
 
