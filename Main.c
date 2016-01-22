@@ -28,6 +28,11 @@ int main()
 	printf("Creating task.\n");
 	xTaskCreate(NetTask,"NetTask",1024,NULL,2,NULL);
 
+	// Note: The startup stack is placed at the end of the
+	// heap. It will be overwritten once the scheduler starts,
+	// so do not allocate any data on the stack that needs to
+	// survive past this point.
+
 	printf("Starting scheduler.\n");
 	vTaskStartScheduler();
 }
