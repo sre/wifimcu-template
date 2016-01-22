@@ -90,6 +90,11 @@ int main()
 	printf("Creating startup task.\n");
 	xTaskCreate(StartupTask,"StartupTask",APP_THREAD_STACKSIZE,NULL,DEFAULT_THREAD_PRIO,NULL);
 
+	// Note: The startup stack is placed at the end of the
+	// heap. It will be overwritten once the scheduler starts,
+	// so do not allocate any data on the stack that needs to
+	// survive past this point.
+
 	printf("Starting FreeRTOS scheduler... ");
 	vTaskStartScheduler();
 
