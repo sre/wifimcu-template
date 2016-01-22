@@ -96,7 +96,7 @@ $(NAME).elf: $(OBJS)
 	$(LD) $(ALL_LDFLAGS) -o $@ $^ $(LIBS)
 	@$(SIZE) $@
 	@printf "Binary size: "
-	@$(SIZE) Blinker.elf | tail -n1 | awk '{print $$1+$$2}'
+	@$(SIZE) $@ | tail -n1 | awk '{print $$1+$$2}'
 	@printf "Available heap: "
 	@echo $$((0x`$(NM) $@ | grep _eheap | awk '{print $$1}'`))-$$((0x`$(NM) $@ | grep _heap | awk '{print $$1}'`)) | bc
 
