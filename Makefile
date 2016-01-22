@@ -89,6 +89,10 @@ debugserver:
 clean:
 	rm -rf $(BUILD_DIR) $(NAME).elf $(NAME).bin
 
+.PHONY: sizes
+sizes: $(OBJS)
+	$(SIZE) $(OBJS)
+
 $(NAME).bin: $(NAME).elf
 	$(OBJCOPY) -O binary $(NAME).elf $(NAME).bin
 
