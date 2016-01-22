@@ -385,7 +385,7 @@ sdio_block_size_t blocksize,uint8_t *bytes,uint32_t length)
 		(DMA_SxCR_PL_0*3)| // Priority level: 3, very high
 		(DMA_SxCR_PBURST_0*1)| // Peripheral burst: inc4
 		(DMA_SxCR_MBURST_0*1)| // Memory burst: inc4
-		DMA_SxCR_PFCTRL| // Peripheral flow control
+		DMA_SxCR_PFCTRL| // Peripheral flow control - NDTR unused
 		DMA_SxCR_TCIE; // Transfer complete interrupt enabled
 	}
 	else
@@ -398,14 +398,15 @@ sdio_block_size_t blocksize,uint8_t *bytes,uint32_t length)
 		(DMA_SxCR_PL_0*3)| // Priority level: 3, very high
 		(DMA_SxCR_PBURST_0*1)| // Peripheral burst: inc4
 		(DMA_SxCR_MBURST_0*1)| // Memory burst: inc4
-		DMA_SxCR_PFCTRL| // Peripheral flow control
+		DMA_SxCR_PFCTRL| // Peripheral flow control - NDTR unused
 		DMA_SxCR_TCIE; // Transfer complete interrupt enabled
 	}
 
-	DMA2_Stream3->FCR=(DMA_SxFCR_FS_1*2)|(DMA_SxFCR_FTH_0*3)|DMA_SxFCR_DMDIS;
+	DMA2_Stream3->FCR=(DMA_SxFCR_FTH_0*3)| // Full FIFO
+	DMA_SxFCR_DMDIS; // Direct mode disable = burst mode
+
 	DMA2_Stream3->PAR=(uint32_t)&SDIO->FIFO;
 	DMA2_Stream3->M0AR=(uint32_t)bytes;
-	DMA2_Stream3->NDTR=dmasize/4;
 	DMA2->LIFCR=0x3f<<22;
 }
 
