@@ -14,8 +14,6 @@
 #include "network/wwd_buffer_interface.h"
 #include "network/wwd_network_constants.h"
 
-#define wiced_assert(a,b)
-
 #define ResetGPIO GPIOB
 #define ResetPin 14
 #define Bootstrap0GPIO GPIOB
