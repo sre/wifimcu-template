@@ -16,8 +16,8 @@ typedef unsigned long int UnsignedIntegerType;
 
 static bool ParseFlags(const char **positiveprefix,bool *padleft,bool *padzero,
 bool *alternate,const char **format);
-static bool ParseSizes(int *width,int *precision,bool *padright,bool *padzero,const char **format,va_list args);
-static int ParseInteger(const char **format,va_list args);
+static bool ParseSizes(int *width,int *precision,bool *padright,bool *padzero,const char **format,va_list *args);
+static int ParseInteger(const char **format,va_list *args);
 static bool ParseLengthModifier(int *modifier,const char **format);
 
 static int OutputString(FormatOutputFunction *outputfunc,void *context,const char *string,
@@ -64,7 +64,7 @@ int FormatString(FormatOutputFunction *outputfunc,void *context,const char *form
 			if(!ParseFlags(&positiveprefix,&padright,&padzero,&alternate,&format)) break;
 
 			int width,precision;
-			if(!ParseSizes(&width,&precision,&padright,&padzero,&format,args)) break;
+			if(!ParseSizes(&width,&precision,&padright,&padzero,&format,&args)) break;
 
 			int modifier;
 			if(!ParseLengthModifier(&modifier,&format)) break;
@@ -217,7 +217,7 @@ bool *alternate,const char **format)
 	}
 }
 
-static bool ParseSizes(int *width,int *precision,bool *padright,bool *padzero,const char **format,va_list args)
+static bool ParseSizes(int *width,int *precision,bool *padright,bool *padzero,const char **format,va_list *args)
 {
 	// Parse field width, if any.
 	*width=ParseInteger(format,args);
@@ -242,12 +242,12 @@ static bool ParseSizes(int *width,int *precision,bool *padright,bool *padzero,co
 	return **format!=0;
 }
 
-static int ParseInteger(const char **format,va_list args)
+static int ParseInteger(const char **format,va_list *args)
 {
 	if(**format=='*')
 	{
 		(*format)++;
-		return va_arg(args,int);
+		return va_arg(*args,int);
 	}
 	else
 	{
