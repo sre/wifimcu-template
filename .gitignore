@@ -1,0 +1,6 @@
+Build/
+WICED/
+*.o
+*.swp
+*.bin
+*.elf
