@@ -26,7 +26,7 @@ DEFINES =	-DSTM32F411xE \
 			-DLWIP_TIMEVAL_PRIVATE=0
 
 LINKERSCRIPT = Linker/Linker-STM32F411xE.ld
-INTERFACE = interface/stlink-v2.cfg
+INTERFACE = openocd-buspirate.cfg
 
 C_OPTS =	-std=c99 \
 			-mthumb \

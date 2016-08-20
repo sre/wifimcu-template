@@ -1,0 +1,7 @@
+SWDIO = D6 = BusPirate MOSI
+SWCLK = D5 = BusPirate CLK
+VIN = BusPirate 3.3V
+GND = BusPirate GND
+
+OpenOCD support for SWD via Buspirate:
+https://bugs.debian.org/795550
