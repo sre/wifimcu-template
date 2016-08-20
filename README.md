@@ -6,7 +6,7 @@ board. It is probably possible to use with other EMW3165 hardware with
 minor tweaks.
 
 It uses a basic arm-none-eabi GCC toolchain to build, and OpenOCD to
-upload code to the board. It uses the WiFi driver from Broadcom's WICED
+upload code to the board. It uses the WiFi driver from Cypress' WICED
 framework, but no other parts of it. It is otherwise self-contained and
 has no other dependencies. It uses only the basic headers from the STM
 libraries, as the STM driver code is generally quite atrocious.
@@ -34,8 +34,8 @@ For OS X users, there's a convenience Xcode project for code editing. Building s
 ## Installing WICED ##
 
 As the WICED files are restrictively licensed, you will need to download them separtely
-from Broadcom. Only WICED-SDK-3.4.0-AWS is currently supported. You should download
-`WICED-SDK-3.4.0-AWS.7z.zip` from Broadcom's website, unpack it (twice), then put the
+from Cypress. Only WICED-SDK-3.4.0-AWS is currently supported. You should download
+`WICED-SDK-3.4.0-AWS.7z.zip` from Cypress' website, unpack it (twice), then put the
 contained directories in the `WICED` directory.
 
 Only the `include`, `libraries`, `resources` and `WICED` directories are actually used.
