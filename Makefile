@@ -111,6 +111,7 @@ C_FILES =	Button.c \
 			mqtt/MQTTDeserializePublish.c \
 			mqtt/MQTTFormat.c \
 			mqtt/MQTTPacket.c \
+			mqtt/MQTTPlatform.c \
 			mqtt/MQTTSerializePublish.c \
 			mqtt/MQTTSubscribeClient.c \
 			mqtt/MQTTSubscribeServer.c \
