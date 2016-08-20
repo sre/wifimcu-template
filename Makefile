@@ -36,6 +36,7 @@ C_OPTS =	-std=c99 \
 			-IIncludes \
 			-I. \
 			-Ilibopencm3/include -DSTM32F4 \
+			-Imbedtls/include \
 			-IFreeRTOS/include \
 			-IFreeRTOS/portable/GCC/ARM_CM4F \
 			-ILwIP/src/include \
@@ -152,7 +153,7 @@ sizes: $(OBJS)
 $(NAME).bin: $(NAME).elf
 	$(OBJCOPY) -O binary $(NAME).elf $(NAME).bin
 
-$(NAME).elf: $(OBJS) $(BUILD_DIR)/WICED.a libopencm3/lib/libopencm3_stm32f4.a
+$(NAME).elf: $(OBJS) $(BUILD_DIR)/WICED.a $(BUILD_DIR)/mbedtls.a libopencm3/lib/libopencm3_stm32f4.a
 	$(LD) $(ALL_LDFLAGS) -o $@ $^ $(LIBS)
 	@$(SIZE) $@
 	@printf "Binary size: "
@@ -163,6 +164,10 @@ $(NAME).elf: $(OBJS) $(BUILD_DIR)/WICED.a libopencm3/lib/libopencm3_stm32f4.a
 .PHONY: libopencm3/lib/libopencm3_stm32f4.a
 libopencm3/lib/libopencm3_stm32f4.a:
 	cd libopencm3 && make
+
+.PHONY: $(BUILD_DIR)/mbedtls.a
+$(BUILD_DIR)/mbedtls.a:
+	make -f Makefile.mbedtls
 
 .PHONY: $(BUILD_DIR)/WICED.a
 $(BUILD_DIR)/WICED.a:
