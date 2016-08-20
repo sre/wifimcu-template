@@ -56,8 +56,9 @@ corners were cut, for instance:
 
 ## License ##
 
-Except for the FreeRTOS and LwIP parts, which are released under their own license, this
-code is released into the public domain with no warranties. If that is not suitable, it
-is also available under the [CC0 license](http://creativecommons.org/publicdomain/zero/1.0/).
+Except for the FreeRTOS, LwIP and libopencm3 parts, which are released under their
+own license, this code is released into the public domain with no warranties. If
+that is not suitable, it is also available under the
+[CC0 license](http://creativecommons.org/publicdomain/zero/1.0/).
 
 The WICED code is not distributed with this code, and can probably not be redistributed.

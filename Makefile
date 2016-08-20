@@ -158,6 +158,10 @@ $(NAME).elf: $(OBJS) $(BUILD_DIR)/WICED.a
 	@printf "Available heap: "
 	@echo $$((0x`$(NM) $@ | grep _eheap | awk '{print $$1}'`))-$$((0x`$(NM) $@ | grep _heap | awk '{print $$1}'`)) | bc
 
+.PHONY: libopencm3/lib/libopencm3_stm32f4.a
+libopencm3/lib/libopencm3_stm32f4.a:
+	cd libopencm3 && make
+
 .PHONY: $(BUILD_DIR)/WICED.a
 $(BUILD_DIR)/WICED.a:
 	make -f Makefile.wiced
