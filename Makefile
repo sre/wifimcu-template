@@ -138,6 +138,9 @@ AUTODEPENDENCY_CFLAGS=-MMD -MF$(@:.o=.d) -MT$@
 
 all: $(NAME).bin
 
+cert.h: cert.pem
+	xxd -i $^ > $@
+
 upload: $(NAME).bin
 	openocd -f $(INTERFACE) -f target/stm32f4x.cfg \
 	-c init -c "reset halt" -c "stm32f2x mass_erase 0" \
