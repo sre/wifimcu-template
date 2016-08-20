@@ -36,6 +36,7 @@
 /* Include some files for defining library routines */
 #include <stdio.h> /* printf, fflush, FILE */
 #include <stdlib.h> /* abort */
+#include <sys/time.h>
 #else
 /* Declare fuction prototypes for assert/diag/error - leads to some warnings,
  * but good to test if no includes are missing. */
