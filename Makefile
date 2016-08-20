@@ -104,7 +104,18 @@ C_FILES =	Button.c \
 			LwIP/src/core/ipv4/ip_addr.c \
 			LwIP/src/core/ipv4/ip_frag.c \
 			LwIP/port/etharp.c \
-			LwIP/port/sys_arch.c
+			LwIP/port/sys_arch.c \
+			mqtt/MQTTClient.c \
+			mqtt/MQTTConnectClient.c \
+			mqtt/MQTTConnectServer.c \
+			mqtt/MQTTDeserializePublish.c \
+			mqtt/MQTTFormat.c \
+			mqtt/MQTTPacket.c \
+			mqtt/MQTTSerializePublish.c \
+			mqtt/MQTTSubscribeClient.c \
+			mqtt/MQTTSubscribeServer.c \
+			mqtt/MQTTUnsubscribeClient.c \
+			mqtt/MQTTUnsubscribeServer.c
 
 S_FILES = 
 
