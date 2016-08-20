@@ -35,6 +35,7 @@ C_OPTS =	-std=c99 \
 			-mfpu=fpv4-sp-d16 \
 			-IIncludes \
 			-I. \
+			-Ilibopencm3/include -DSTM32F4 \
 			-IFreeRTOS/include \
 			-IFreeRTOS/portable/GCC/ARM_CM4F \
 			-ILwIP/src/include \
@@ -56,6 +57,7 @@ C_FILES =	Button.c \
 			FormatString.c \
 			LED.c \
 			Main.c \
+			ws2812.c \
 			Printf.c \
 			Startup.c \
 			System.c \
@@ -150,7 +152,7 @@ sizes: $(OBJS)
 $(NAME).bin: $(NAME).elf
 	$(OBJCOPY) -O binary $(NAME).elf $(NAME).bin
 
-$(NAME).elf: $(OBJS) $(BUILD_DIR)/WICED.a
+$(NAME).elf: $(OBJS) $(BUILD_DIR)/WICED.a libopencm3/lib/libopencm3_stm32f4.a
 	$(LD) $(ALL_LDFLAGS) -o $@ $^ $(LIBS)
 	@$(SIZE) $@
 	@printf "Binary size: "
